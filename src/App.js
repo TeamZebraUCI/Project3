@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import API from "./utils/API";
 
 console.log("Making Call to API");
-const companySymbol = "aapl";
-const route = "https://api.iextrading.com/1.0/stock/"+companySymbol+"/company";
-
-$.get(route,(data)=>{
-  console.log(data);
+API.search(["aapl"]).then(res=>{
+  console.log(res);
 });
 
 class App extends Component {
