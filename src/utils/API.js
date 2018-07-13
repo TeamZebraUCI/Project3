@@ -1,4 +1,6 @@
 import axios from "axios";
+import StockSymbolLookup from "stock-symbol-lookup";
+
 export default {
     // makes a call to the stocks API using a list of company symbols
     search: function(symbArr) {
@@ -19,5 +21,9 @@ export default {
             "https://api.iextrading.com/1.0/stock/market/batch?" + 
             symbols+"&"+types+"&"+range
         );
+    },
+    searchSymbol: function(searchQuery){
+        return StockSymbolLookup.search(searchQuery);
     }
+
 };

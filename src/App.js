@@ -8,6 +8,10 @@ console.log("Making Call to API");
 API.search(["aapl"]).then(res=>{
   console.log(res);
 });
+console.log("Searching for company symbol");
+API.searchSymbol("Google").then(res=>{
+  console.log(res);
+});
 
 class App extends Component {
   render() {
