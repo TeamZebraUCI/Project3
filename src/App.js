@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+console.log("Making Call to API");
+const companySymbol = "aapl";
+const route = "https://api.iextrading.com/1.0/stock/"+companySymbol+"/company";
+
+$.get(route,(data)=>{
+  console.log(data);
+});
+
 class App extends Component {
   render() {
     return (
