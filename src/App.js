@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import API from "./utils/API";
 
+// example API.search use
 console.log("Making Call to API");
 API.search(["aapl"]).then(res=>{
   console.log(res);

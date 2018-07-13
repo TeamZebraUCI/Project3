@@ -1,19 +1,23 @@
 import axios from "axios";
 export default {
-  search: function(symbArr) {
-    let symbols = "symbols=";
-    for(let i=0;i<symbArr.length;i++){
-        let symbol = symbArr[i];
-        if (i !== (symbArr.length - 1)){
-            symbol += ","
+    // makes a call to the stocks API using a list of company symbols
+    search: function(symbArr) {
+        // types: what information to retreive
+        const types  = "types=chart,logo";
+        // range: how far back we want the charts to go
+        const range  = "range=1d";
+        // symbols: list of companies to search
+        let symbols = "symbols=";
+        for(let i=0;i<symbArr.length;i++){
+            let symbol = symbArr[i];
+            if (i !== (symbArr.length - 1)){
+                symbol += ","
+            }
+            symbols += symbol;
         }
-        symbols += symbol;
-      }
-    const types  = "types=chart,logo";
-    const range  = "range=1d";
-    return axios.get(
-        "https://api.iextrading.com/1.0/stock/market/batch?" + 
+        return axios.get(
+            "https://api.iextrading.com/1.0/stock/market/batch?" + 
             symbols+"&"+types+"&"+range
         );
-  }
+    }
 };
