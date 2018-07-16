@@ -32,3 +32,22 @@ export default {
 
     }
 };
+
+// example API.search use
+// API.getData(["aapl"]).then(res=>{
+//     console.log("API::getData::SUCCESS");
+//     console.log(res);
+//   }).catch(error=>{
+//     console.log("API::getData::FAIL");
+//     console.log("INVALID COMPANY SYMBOL");  
+//   });
+  
+//   API.searchSymbol("aapl").then(res=>{
+//     console.log("API::SearchSymbol::SUCCESS");
+//     console.log(res);
+//   }).catch(error=>{
+//     console.log("API::SearchSymbol::FAIL");
+//     console.log("INVALID COMPANY SYMBOL");
+//   });
+//   ;
+  
