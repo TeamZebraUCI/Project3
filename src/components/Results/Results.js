@@ -41,7 +41,7 @@ class Results extends Component {
                                 </IconButton>
                             }
                         >
-                            <img src={img.largeImageURL} alt='No Image' />
+                            <img src={img.largeImageURL} alt='No Image Found'/>
                         </GridTile>
                     ))}
                 </GridList>
