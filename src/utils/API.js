@@ -1,9 +1,10 @@
 import axios from "axios";
-import StockSymbolLookup from "stock-symbol-lookup";
+
+
 
 export default {
     // makes a call to the stocks API using a list of company symbols
-    search: function(symbArr) {
+    getData: function(symbArr) {
         // types: what information to retreive
         const types  = "types=chart,logo";
         // range: how far back we want the charts to go
@@ -22,8 +23,12 @@ export default {
             symbols+"&"+types+"&"+range
         );
     },
-    searchSymbol: function(searchQuery){
-        return StockSymbolLookup.search(searchQuery);
-    }
+    // make a call to the stocks API to get company info
+    //   suing its symbol (will throw error if symbol invalid)
+    searchSymbol: function(symbol){
+        return axios.get(
+            "https://api.iextrading.com/1.0/stock/"+symbol+"/company"
+        );
 
+    }
 };
