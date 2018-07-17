@@ -8,13 +8,14 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 
 //import components
-
+import Title from './components/Title'
 //import API
 // import API from "./utils/API";
 
 const App = ()=>(
   <Router>
     <div>
+      <Title>Raven Stock</Title>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
