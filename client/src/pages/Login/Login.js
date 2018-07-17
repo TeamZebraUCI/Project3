@@ -4,8 +4,10 @@ class Login extends Component{
 
     render(){
         return (
-            <h1>THIS IS THE LOGIN PAGE</h1>
-        );
+            <div>
+            <p>You must log in to view this page at {from.pathname} </p>
+            <button onClick = {this.login}>Log in</button>
+          </div>);
     }
 };
 
