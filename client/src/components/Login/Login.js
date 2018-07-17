@@ -1,4 +1,9 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
+
+const styles = {
+    display: "inline-block",
+    width: 'auto',
+}
 
 export default class Login extends Component {
     constructor() {
@@ -27,8 +32,9 @@ export default class Login extends Component {
 
     render() {
         return (
-            <Fragment>
+            <div style={styles}>
             <form>
+                <span>Login: </span>
                 <input
                     placeholder='Username'
                     name='user'
@@ -43,7 +49,7 @@ export default class Login extends Component {
                     type="text" />
                 <button onClick={this.handleFormSubmit}>Submit</button>
             </form>
-</Fragment>
+            </div>
         )
     }
 }
