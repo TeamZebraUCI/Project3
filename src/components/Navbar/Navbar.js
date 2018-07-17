@@ -2,7 +2,7 @@ import React from 'react'
 import AppBar from 'material-ui/AppBar';
 
 const styles = {
-    background: 'linear-gradient(45deg, #FFB300 30%, #757575 90%)',
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     boxShadow: '0 6px 10px grey, 0 6px 10px grey'
 }
 
