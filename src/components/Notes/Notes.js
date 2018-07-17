@@ -43,7 +43,7 @@ export default class Notes extends Component {
         let pinNote = this.state.notes.map((e, i) => {
             return (
                 <ListItem key={i} rightIconButton={<div style={{ display: 'flex' }}>
-                    <IconButton onClick={() => this.deleteNote(i)} >
+                    <IconButton aria-label="Delete" onClick={() => this.deleteNote(i)} >
                         <DeleteIcon />
                     </IconButton>
                 </div>}>{e}
