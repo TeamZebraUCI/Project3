@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import TextField from 'material-ui/TextField'
-import Paper from 'material-ui/Paper'
-import FlatButton from 'material-ui/FlatButton'
-import { List, ListItem, ListItemSecondaryAction, IconButton } from '@material-ui/core'
-import DeleteIcon from 'material-ui/svg-icons/action/delete'
-import Typography from '@material-ui/core/Typography'
-
-const styles = {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    border: 0,
-    color: 'white',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-}
+import './Notes.css'
 
 export default class Notes extends Component {
     constructor() {
@@ -28,52 +16,39 @@ export default class Notes extends Component {
 
     onClick = e => {
         e.preventDefault();
-        if (this.state.currentNote) {
-            let newNote = this.state.notes.slice();
-            newNote.push(this.state.currentNote);
-            this.setState({ notes: newNote, currentNote: '' });
-        }
+        let newNote = this.state.notes.slice();
+        newNote.push(this.state.currentNote);
+
+
+        this.setState({ notes: newNote, currentNote: '' });
     }
     deleteNote = i => {
         let removeNote = this.state.notes.slice();
-        removeNote.splice(i, 1);
+        removeNote.splice(i , 1);
         this.setState({ notes: removeNote })
     }
     render() {
         let pinNote = this.state.notes.map((e, i) => {
             return (
-                <ListItem key={i}>{e}
-                    <ListItemSecondaryAction>
-                        <IconButton aria-label="Delete" onClick={() => this.deleteNote(i)} >
-                            <DeleteIcon />
-                        </IconButton>
-                    </ListItemSecondaryAction>
-                </ListItem>
+                <li key={i}>{e}<button onClick={() => this.deleteNote(i)}>x</button></li>
             );
         });
         return (
-            <Paper style={{ width: "25%", marginTop: "3em" }}>
-                <Typography variant="title" style={{ textAlign: 'center'}}>
-                    Pinned Notes
-            </Typography>
-                <Paper style={{ paddingBottom: '20px' }}>
-                    <List>
-                        {this.state.notes.length === 0 ? <ListItem>Add a note!</ListItem> : pinNote}
-                    </List>
-                </Paper>
+            <div className='notesArea'>
+                {this.state.notes.length === 0 ? "No notes yet!" : <ul>{pinNote}</ul>}
+                <br />
                 <form>
-                    <TextField
-                        name="AddNote"
-                        value={this.state.currentNote}
-                        onChange={this.onInputChange}
-                    />
-                    <FlatButton
-                        type="submit"
-                        label="Add Note"
-                        labelStyle={styles}
-                        onClick={this.onClick} />
+                    <div className='notes'>
+                        <input
+                            className='textArea'
+                            placeholder='Create a new note!'
+                            value={this.state.currentNote}
+                            onChange={this.onInputChange}
+                            type="text" />
+                        <button onClick={this.onClick}>Add</button>
+                    </div>
                 </form>
-            </Paper>
+            </div>
         )
     }
 }
