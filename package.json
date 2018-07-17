@@ -1,21 +1,8 @@
 {
-<<<<<<< HEAD
   "name": "project3",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.18.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
-  },
-=======
-  "name": "ProjectThree",
-  "version": "1.0.0",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
->>>>>>> origin/master
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
