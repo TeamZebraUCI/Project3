@@ -10,7 +10,7 @@ import NoMatch from "./pages/NoMatch";
 //import components
 
 //import API
-import API from "./utils/API";
+// import API from "./utils/API";
 
 const App = ()=>(
   <Router>
