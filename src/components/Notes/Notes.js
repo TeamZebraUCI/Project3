@@ -5,7 +5,6 @@ import FlatButton from 'material-ui/FlatButton'
 import { List, ListItem } from 'material-ui/List'
 import IconButton from 'material-ui/IconButton'
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
-import red500 from 'material-ui/styles/colors'
 
 const styles = {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -43,10 +42,12 @@ export default class Notes extends Component {
     render() {
         let pinNote = this.state.notes.map((e, i) => {
             return (
-                <ListItem key={i}>{e} <IconButton onClick={() => this.deleteNote(i)}>
-                    <DeleteIcon style={{ color: red500 }} />
-                </IconButton></ListItem>
-
+                <ListItem key={i} rightIconButton={<div style={{ display: 'flex' }}>
+                    <IconButton onClick={() => this.deleteNote(i)} >
+                        <DeleteIcon />
+                    </IconButton>
+                </div>}>{e}
+                </ListItem>
             );
         });
         return (
@@ -69,8 +70,6 @@ export default class Notes extends Component {
                         onClick={this.onClick} />
                 </form>
             </Paper>
-
-
         )
     }
 }
