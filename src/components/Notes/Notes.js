@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import TextField from 'material-ui/TextField'
+import Paper from 'material-ui/Paper';
+import FlatButton from 'material-ui/FlatButton';
 import './Notes.css'
 
 export default class Notes extends Component {
@@ -24,7 +27,7 @@ export default class Notes extends Component {
     }
     deleteNote = i => {
         let removeNote = this.state.notes.slice();
-        removeNote.splice(i , 1);
+        removeNote.splice(i, 1);
         this.setState({ notes: removeNote })
     }
     render() {
@@ -34,21 +37,27 @@ export default class Notes extends Component {
             );
         });
         return (
-            <div className='notesArea'>
+            <Paper style={{width: "25%"}}>
+            <Paper style={{ paddingBottom: '20px'}}>
+
                 {this.state.notes.length === 0 ? "No notes yet!" : <ul>{pinNote}</ul>}
-                <br />
-                <form>
-                    <div className='notes'>
-                        <input
-                            className='textArea'
-                            placeholder='Create a new note!'
-                            value={this.state.currentNote}
-                            onChange={this.onInputChange}
-                            type="text" />
-                        <button onClick={this.onClick}>Add</button>
-                    </div>
-                </form>
-            </div>
+            </Paper>
+            <form>
+                <TextField
+                    name="AddNote"
+                    value={this.state.currentNote}
+                    onChange={this.onInputChange}
+                    floatingLabelText='Add a Note'
+                />
+                <FlatButton
+                    type="submit"
+                    label="Add Note"
+                    primary={true}
+                    onClick={this.onClick} />
+               </form>
+                </Paper>
+           
+            
         )
     }
 }
