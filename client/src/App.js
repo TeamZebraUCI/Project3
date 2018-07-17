@@ -8,17 +8,13 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 
 //import components
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import NavBar from './components/Navbar/Navbar'
-import Search from './components/Search/Search'
 
 //import API
 import API from "./utils/API";
 
-const App = ()=>{
+const App = ()=>(
   <Router>
     <div>
-      <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
@@ -26,6 +22,6 @@ const App = ()=>{
       </Switch>
     </div>
   </Router>
-};
+);
 
 export default App;
