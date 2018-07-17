@@ -23,11 +23,13 @@ export default class Login extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault();
+        if (this.state.user && this.state.password) {
         console.log(`Testing: ${this.state.user} ${this.state.password}`);
         this.setState({
             user: "",
             password: ""
         });
+        }
     };
 
     render() {
