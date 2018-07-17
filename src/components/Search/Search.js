@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component , Fragment } from 'react'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
@@ -32,7 +32,7 @@ export default class Search extends Component {
     render() {
         console.log(this.state.images);
         return (
-            <div>
+            <Fragment>
                 <TextField
                     name="SearchText"
                     value={this.state.SearchText}
@@ -55,7 +55,7 @@ export default class Search extends Component {
                 </SelectField>
                 <br />
                 {this.state.images.length > 0 ? (<Results images={this.state.images} />) : null}
-            </div>
+            </Fragment>
         )
     }
 }
