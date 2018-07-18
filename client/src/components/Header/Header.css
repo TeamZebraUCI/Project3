@@ -1,5 +1,17 @@
-.title {
+.Header{
   width: 100%;
+  height: fit-content;
+  padding: 0%;
+  margin: 0%;
+  background-color:rgb(41, 141, 44);
+}
+
+.Header .title{
+  width: 100%;
+  height: 100%;
+  padding: 0%;
+  margin: 0%;
+  height: fit-content;
   text-align: center;
   font-size: 3.5rem;
   font-style:italic;

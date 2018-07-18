@@ -1,16 +1,15 @@
-import React,{Component, Fragment} from "react";
-import Notes from '../../components/Notes/Notes'
+import React,{Component} from "react";
+import "./Home.css";
 
 class Home extends Component{
-
     render(){
         return (
-            <Fragment>
-            <h1>THIS IS THE HOME PAGE</h1>
-            <Notes />
-            </Fragment>
+            <div>
+                <h1>THIS IS THE HOME PAGE</h1>
+            </div>
         );
     }
 };
 
+// import {myChart} from "./chart.js";
 export default Home;
