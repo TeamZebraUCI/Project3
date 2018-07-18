@@ -1,4 +1,6 @@
-import Chart from 'chart.js';
+import React from "react";
+import Chart from "chart.js";
+
 
 // x-axis ticks
 const years = [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050];
@@ -9,9 +11,9 @@ const europe = [168, 1700, 178, 190, 203, 276, 4008, 547, 6705, 734];
 const latinAmerica = [400, 2000, 1000, 1600, 240, 38, 7400, 1670, 5080, 784];
 const northAmerica = [60, 300, 2000, 200, 700, 2600, 820, 1720, 3120, 4330];
 
-// link the graph to our html
-const ctx = document.getElementById("myChart");
-const myChart = new Chart(ctx, {
+const canvas = <canvas width="1600" height="900"></canvas>;
+
+const myChart = new Chart(canvas, {
     // specify what type of grpah we are using
     type: 'line',
     data: {
@@ -56,8 +58,16 @@ const myChart = new Chart(ctx, {
     }
 });
 
-export {myChart};
+const MyChart = props=>(
+    <div>
+        this is the Chart
+        {canvas}
+        canvas ends here
+    </div>
+);
 
+
+export default MyChart;
 
 // new dataset input button
 // $('#button').click(function () {
