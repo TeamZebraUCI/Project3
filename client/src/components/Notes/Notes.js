@@ -16,11 +16,11 @@ export default class Notes extends Component {
 
     onClick = e => {
         e.preventDefault();
+        if (this.state.currentNote) {
         let newNote = this.state.notes.slice();
         newNote.push(this.state.currentNote);
-
-
         this.setState({ notes: newNote, currentNote: '' });
+        }
     }
     deleteNote = i => {
         let removeNote = this.state.notes.slice();
