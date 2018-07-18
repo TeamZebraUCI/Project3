@@ -1,4 +1,5 @@
 //=====================================import React tools===============================================
+//import React tools
 import React, {Component} from 'react';
 import { 
   BrowserRouter as Router,
@@ -10,9 +11,13 @@ import {
 } from "react-router-dom";
 
 //======================================import pages============================================================
-// import Home from "./pages/Home";
-// import Login from "./pages/Login";
-// import NoMatch from "./pages/NoMatch";
+//import pages
+import HomePage from "./pages/Home";
+import LoginPage from "./pages/Login";
+import NoMatchPage from "./pages/NoMatch";
+
+//======================================import components============================================================
+import Page from "./components/Page";
 
 //======================================import API================================================================
 // import API from "./utils/API";
@@ -85,38 +90,38 @@ const AuthButton = withRouter(({ history }) => (
   )
 ))
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div>
-          <AuthButton/>
-          <ul>
-            <li><Link to = '/public'>Public Page</Link></li>
-            <li><Link to = '/protected'>Protected Page</Link></li>
-          </ul>
+// class App extends Component {
+//   render() {
+//     return (
+//       <Router>
+//         <div>
+//           <AuthButton/>
+//           <ul>
+//             <li><Link to = '/public'>Public Page</Link></li>
+//             <li><Link to = '/protected'>Protected Page</Link></li>
+//           </ul>
 
-          <Route path = '/public' component = {Public} />
-          <Route path = '/login' component = {Login} />
-          <PrivateRoute path = '/protected' component = {Protected} />
-        </div> 
-      </Router>
-    );
-  }
-}
-//=================================Daniel Logic==================================================
-//
-// const App = ()=>(
-//   <Router>
-//     <div>
-//       <Switch>
-//         <Route exact path="/" component={Home} />
-//         <Route exact path="/login" component={Login} />
-//         <Route component={NoMatch} />
-//       </Switch>
-//     </div>
-//   </Router>
-// );
+//           <Route path = '/public' component = {Public} />
+//           <Route path = '/login' component = {Login} />
+//           <PrivateRoute path = '/protected' component = {Protected} />
+//         </div> 
+//       </Router>
+//     );
+//   }
+// }
+
+// =================================Daniel Logic==================================================
+const App = ()=>(
+  <Page>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route component={NoMatchPage} />
+      </Switch>
+    </Router>
+  </Page>
+);
 
 
 export default App;
