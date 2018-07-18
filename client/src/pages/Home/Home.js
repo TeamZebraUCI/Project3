@@ -11,4 +11,5 @@ class Home extends Component{
     }
 };
 
+// import {myChart} from "./chart.js";
 export default Home;
