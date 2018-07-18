@@ -9,6 +9,7 @@ import {
   withRouter, 
   Switch 
 } from "react-router-dom";
+import Helmet from "react-helmet";
 
 //======================================import pages============================================================
 //import pages
@@ -17,7 +18,7 @@ import LoginPage from "./pages/Login";
 import NoMatchPage from "./pages/NoMatch";
 
 //======================================import components============================================================
-import Page from "./components/Page";
+import Page from "./components/MaterializePage";
 
 //======================================import API================================================================
 // import API from "./utils/API";

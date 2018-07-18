@@ -1,11 +1,11 @@
 import React from "react";
 import "./Footer.css";
+import {Navbar, NavItem} from 'react-materialize'
 
 const Footer = props =>(
-    <div className="Footer">
-        <h4 className="text">{props.children}</h4>;
-    </div>
-
+    <Navbar brand="logo" right>
+        <NavItem onClick={()=>{console.log("test click")}}>ITEM</NavItem>
+    </Navbar>
 ); 
 
 export default Footer;
