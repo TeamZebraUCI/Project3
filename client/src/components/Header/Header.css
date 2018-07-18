@@ -2,13 +2,13 @@
   width: 100%;
   height: fit-content;
   padding: 0%;
+  margin: 0%;
   background-color:rgb(41, 141, 44);
-  margin-bottom: 30px;
 }
 
 .Header .title{
   width: 100%;
-  height: fit-content;
+  height: 100%;
   padding: 0%;
   margin: 0%;
   height: fit-content;
