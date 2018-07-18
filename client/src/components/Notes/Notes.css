@@ -1,0 +1,10 @@
+.notesArea {
+  display: block;
+  width: 33%;
+  float: left;
+}
+
+.notes{
+  display:flex;
+  position: absolute;
+}
