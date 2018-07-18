@@ -16,15 +16,15 @@ export default class Notes extends Component {
 
     onClick = e => {
         e.preventDefault();
-        let newNote = this.state.notes.slice();
-        newNote.push(this.state.currentNote);
-
-
-        this.setState({ notes: newNote, currentNote: '' });
+        if (this.state.currentNote) {
+            let newNote = this.state.notes.slice();
+            newNote.push(this.state.currentNote);
+            this.setState({ notes: newNote, currentNote: '' });
+        }
     }
     deleteNote = i => {
         let removeNote = this.state.notes.slice();
-        removeNote.splice(i , 1);
+        removeNote.splice(i, 1);
         this.setState({ notes: removeNote })
     }
     render() {
