@@ -1,0 +1,31 @@
+.Login{
+    display: inline-block;
+    margin: 0%;
+    height: fit-content;
+    width: 400px;
+    text-align: center;
+    background-color:orange;
+}
+.Login .title{
+    margin: 0%;
+    padding: 0px;
+}
+
+.Login .prompt{
+    width: 75%;
+}
+
+.Login .submitBtn{
+    margin: 10px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;}
+
+.Login .submitBtn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}

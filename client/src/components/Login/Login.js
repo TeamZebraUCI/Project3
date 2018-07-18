@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
-
-const styles = {
-    display: "inline-block",
-    width: 'auto',
-}
+import React, { Component } from 'react';
+import "./Login.css";
 
 export default class Login extends Component {
+
     constructor() {
         super();
         this.state = {
@@ -23,7 +20,7 @@ export default class Login extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault();
-        console.log(`Testing: ${this.state.user} ${this.state.password}`);
+        console.log(`Testing: ${this.state.user} ${this.state.password}`); //<------ DO SOMETHING WITH CREDENTIALS
         this.setState({
             user: "",
             password: ""
@@ -32,22 +29,22 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div style={styles}>
+            <div className="Login">
             <form>
-                <span>Login: </span>
-                <input
+                <h1 className="title">Login: </h1>
+                <input className="prompt"
                     placeholder='Username'
                     name='user'
                     value={this.state.user}
                     onChange={this.handleInputChange}
                     type="text" />
-                <input
+                <input className="prompt"
                     placeholder='Password'
                     name='password'
                     value={this.state.password}
                     onChange={this.handleInputChange}
-                    type="text" />
-                <button onClick={this.handleFormSubmit}>Submit</button>
+                    type="password" />
+                <button className="submitBtn" onClick={this.handleFormSubmit}>Submit</button>
             </form>
             </div>
         )

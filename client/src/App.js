@@ -8,21 +8,20 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 
 //import components
-import Title from './components/Title'
+import Page from "./components/Page";
 //import API
 // import API from "./utils/API";
 
 const App = ()=>(
-  <Router>
-    <div>
-      <Title>Raven Stock</Title>
+  <Page>
+    <Router>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route component={NoMatch} />
       </Switch>
-    </div>
-  </Router>
+    </Router>
+  </Page>
 );
 
 export default App;
