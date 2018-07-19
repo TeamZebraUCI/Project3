@@ -2,9 +2,6 @@ import React, {Component} from "react";
 import "./Header.css";
 import {Navbar,NavItem,Icon} from "react-materialize";
 
-import LoginButton from "../LoginButton";
-import User from "../UserBadge";
-
 
 class Header extends Component {
     
@@ -12,7 +9,10 @@ class Header extends Component {
         if (!this.props.promptLogin){
             return;
         }else{
-            return <NavItem href="/login"><Icon left>person</Icon>{this.props.username||"Login"}</NavItem>;
+            if(this.props.username){
+                return <NavItem href="#"><Icon left>person</Icon>{this.props.username}</NavItem>;
+            }
+            return <NavItem href="/login"><Icon left>person</Icon>Login</NavItem>;
         }
     };
 
