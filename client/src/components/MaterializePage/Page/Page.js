@@ -14,11 +14,15 @@ const Page = props => (
         </Helmet>
 
         <Header
-            style={props.style}
-            text={props.text}
+            style = {props.style}
+            text = {props.text}
+            navItem = {false}
+            promptLogin = {props.promptLogin}
+            username = {props.username}
         />
 
         <div className="content">
+            {props.username}
             {props.children}
         </div>
 

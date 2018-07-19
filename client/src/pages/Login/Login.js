@@ -17,6 +17,7 @@ class Login extends Component{
                     }
                 }
                 text="P3"//<---- LOGO TEXT
+                promptLogin = {false}
             >
                 <Helmet>
                     <title>Login</title>

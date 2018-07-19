@@ -112,15 +112,19 @@ const AuthButton = withRouter(({ history }) => (
 // }
 
 // =================================Daniel Logic==================================================
-const App = ()=>(
-    <Router>
-      <Switch>
-        <Route exact path="/" render={()=><HomePage msg="testMSG"/>}/>
-        <Route exact path="/login" render={()=><LoginPage/>} />
-        <Route render={()=><NoMatchPage msg="testMSG"/>} />
-      </Switch>
-    </Router>
-);
+class App extends Component{
+  render(){
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/" render={()=><HomePage msg="testMSG" />} />
+          <Route exact path="/login" render={()=><LoginPage/>} />
+          <Route render={()=><NoMatchPage msg="testMSG"/>} />
+        </Switch>
+      </Router>
+    );
+  }
+}
 
 
 export default App;

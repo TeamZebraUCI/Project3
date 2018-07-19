@@ -14,11 +14,13 @@ class Home extends Component{
                     }
                 }
                 text="P3"//<---- LOGO TEXT
-            > 
+                promptLogin={true}
+                username = {this.props.username}
+            >
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
-                {this.props.msg}
+                {this.props.username}
                 <h1>THIS IS THE HOME PAGE</h1>
             </Page>
         );
