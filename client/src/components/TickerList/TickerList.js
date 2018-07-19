@@ -1,11 +1,12 @@
 import React, {Component} from "react";
-import {Collection, CollectionItem, Button, Icon} from "react-materialize";
+import {Collection, CollectionItem, Button, Icon,Chip} from "react-materialize";
 import './TickerList.css';
+import StockAPI from "../../utils/API";
 
 class TickerList extends Component {
     state={
         query:"",
-        Tickers:["ticker1","ticker2"]
+        Tickers:[]
     };
 
     onInputChange = (event) => {
@@ -15,31 +16,50 @@ class TickerList extends Component {
     onClick = event => {
         console.log("BUTTON CLICKED");
         if (this.state.query){
-            //add ticker to state (and theirfore the list)
-            let newTickers = this.state.Tickers;
-            newTickers.push(this.state.query);
-            this.setState({ Tickers: newTickers, query: "" });    
+            StockAPI.searchSymbol(this.state.query.trim()).then(res=>{
+                console.log("API::SearchSymbol::SUCCESS");
+                //add ticker to list
+                let newTickers = this.state.Tickers;
+                const newTIcker = {
+                    ticker: this.state.query,
+                    logoURL: res.data.url
+                }
+                newTickers.push(newTIcker);
+                this.setState({ Tickers: newTickers, query: "" });
+                console.log(res);
+            }).catch(error=>{
+                console.log("API::SearchSymbol::FAIL");
+                console.log("INVALID COMPANY SYMBOL");
+            });
+            ;
+
+
         }
     };
 
     render(){
 
-        let displayTickers = this.state.Tickers.map((ticker)=>{
+        let displayTickers = this.state.Tickers.map((tickerObj)=>{
             return (
-                <CollectionItem href="#"    >{ticker}</CollectionItem>
+                <CollectionItem href="#">
+                    <Chip>
+                        <img src={tickerObj.logoURL}/>
+                        {tickerObj.ticker}
+                    </Chip>
+                </CollectionItem>
             );
         });
 
         const searchHeader =
             <div>
-                <Button onClick={this.onClick}><Icon left>search</Icon></Button>
-                    <input
-                        className='textArea'
-                        placeholder='Create a new note!'
-                        value={this.state.query}
-                        onChange={this.onInputChange}
-                        type="text" 
-                    />
+                <input
+                    className='textArea'
+                    placeholder='Ticker'
+                    value={this.state.query}
+                    onChange={this.onInputChange}
+                    type="text" 
+                />
+                <Button onClick={this.onClick}><Icon left>search</Icon>Search</Button>
             </div>;
 
 
