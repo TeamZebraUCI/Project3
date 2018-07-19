@@ -9,7 +9,6 @@ import {
   withRouter, 
   Switch 
 } from "react-router-dom";
-import Helmet from "react-helmet";
 
 //======================================import pages============================================================
 //import pages
@@ -113,7 +112,14 @@ const AuthButton = withRouter(({ history }) => (
 
 // =================================Daniel Logic==================================================
 const App = ()=>(
-  <Page>
+  <Page
+    style={
+      {
+      "background-color":"#9b179b",//<------ THEME COLOR
+      }
+    }
+    text="P3"//<---- LOGO TEXT
+  >
     <Router>
       <Switch>
         <Route exact path="/" component={HomePage} />
