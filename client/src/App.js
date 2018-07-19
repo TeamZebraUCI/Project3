@@ -112,14 +112,6 @@ const AuthButton = withRouter(({ history }) => (
 
 // =================================Daniel Logic==================================================
 const App = ()=>(
-  <Page
-    style={
-      {
-      "background-color":"#9b179b",//<------ THEME COLOR
-      }
-    }
-    text="P3"//<---- LOGO TEXT
-  >
     <Router>
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -127,7 +119,6 @@ const App = ()=>(
         <Route component={NoMatchPage} />
       </Switch>
     </Router>
-  </Page>
 );
 
 
