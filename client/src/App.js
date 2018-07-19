@@ -16,10 +16,6 @@ import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import NoMatchPage from "./pages/NoMatch";
 
-//======================================import components============================================================
-import Page from "./components/MaterializePage";
-import Home from './pages/Home';
-
 //======================================import API================================================================
 // import API from "./utils/API";
 
@@ -117,7 +113,7 @@ class App extends Component{
     return (
       <Router>
         <Switch>
-          <Route exact path="/" render={()=><HomePage msg="testMSG" username="bob"/>} />
+          <Route exact path="/" render={()=><HomePage msg="testMSG" username=""/>} />
           <Route exact path="/login" render={()=><LoginPage/>} />
           <Route render={()=><NoMatchPage msg="testMSG"/>} />
         </Switch>

@@ -22,7 +22,6 @@ const Page = props => (
         />
 
         <div className="content">
-            {props.username}
             {props.children}
         </div>
 

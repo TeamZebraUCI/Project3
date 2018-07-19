@@ -20,7 +20,6 @@ class Home extends Component{
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
-                {this.props.username}
                 <h1>THIS IS THE HOME PAGE</h1>
             </Page>
         );
