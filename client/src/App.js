@@ -16,9 +16,6 @@ import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import NoMatchPage from "./pages/NoMatch";
 
-//======================================import components============================================================
-import Page from "./components/Page";
-
 //======================================import API================================================================
 // import API from "./utils/API";
 
@@ -111,17 +108,19 @@ const AuthButton = withRouter(({ history }) => (
 // }
 
 // =================================Daniel Logic==================================================
-const App = ()=>(
-  <Page>
-    <Router>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route component={NoMatchPage} />
-      </Switch>
-    </Router>
-  </Page>
-);
+class App extends Component{
+  render(){
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/" render={()=><HomePage msg="testMSG" username=""/>} />
+          <Route exact path="/login" render={()=><LoginPage/>} />
+          <Route render={()=><NoMatchPage msg="testMSG"/>} />
+        </Switch>
+      </Router>
+    );
+  }
+}
 
 
 export default App;
