@@ -5,36 +5,12 @@ import StockAPI from "../../utils/API";
 
 class TickerList extends Component {
     state={
-        query:"",
+        text:"",
         Tickers:[]
     };
 
     onInputChange = (event) => {
-        this.setState({ query: event.target.value });
-    };
-
-    onClick = event => {
-        console.log("BUTTON CLICKED");
-        if (this.state.query){
-            StockAPI.searchSymbol(this.state.query.trim()).then(res=>{
-                console.log("API::SearchSymbol::SUCCESS");
-                //add ticker to list
-                let newTickers = this.state.Tickers;
-                const newTIcker = {
-                    ticker: this.state.query,
-                    logoURL: res.data.url
-                }
-                newTickers.push(newTIcker);
-                this.setState({ Tickers: newTickers, query: "" });
-                console.log(res);
-            }).catch(error=>{
-                console.log("API::SearchSymbol::FAIL");
-                console.log("INVALID COMPANY SYMBOL");
-            });
-            ;
-
-
-        }
+        this.setState({ text: event.target.value });
     };
 
     render(){
@@ -55,11 +31,11 @@ class TickerList extends Component {
                 <input
                     className='textArea'
                     placeholder='Ticker'
-                    value={this.state.query}
+                    value={this.state.text}
                     onChange={this.onInputChange}
                     type="text" 
                 />
-                <Button onClick={this.onClick}><Icon left>search</Icon>Search</Button>
+                <Button onClick={()=>{this.props.buttonHandler(this.state.text)}}><Icon left>search</Icon>Search</Button>
             </div>;
 
 
