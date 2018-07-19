@@ -1,3 +1,11 @@
-#container{
-    text-align: center;
+.Home{
+    margin: 20px 0px;
+}
+
+.mycol1{
+    background-color: aquamarine;
+}
+
+.mycol2{
+    background-color: black;
 }

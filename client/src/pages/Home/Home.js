@@ -2,6 +2,7 @@ import React,{Component} from "react";
 import "./Home.css";
 import {Helmet} from "react-helmet";
 import Page from "../../components/MaterializePage";
+import TickerList from "../../components/TickerList";
 
 class Home extends Component{
 
@@ -20,7 +21,10 @@ class Home extends Component{
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
-                <h1>THIS IS THE HOME PAGE</h1>
+                <div className="Home row">
+                    <div className="col s3 mycol1"><TickerList/></div>
+                    <div className="col s9 mycol2">asdf</div>
+                </div>
             </Page>
         );
     }

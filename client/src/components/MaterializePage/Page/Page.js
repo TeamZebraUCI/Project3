@@ -7,7 +7,7 @@ import {Helmet} from "react-helmet";
 
 
 const Page = props => (
-    <div className="Page">
+    <div>
         <Helmet>
             <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
             <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet"></link>
@@ -20,9 +20,10 @@ const Page = props => (
             promptLogin = {props.promptLogin}
             username = {props.username}
         />
-
-        <div className="content">
-            {props.children}
+        <div className="Page row">
+            <div className="col s1"></div>
+            <div className="col s10">{props.children}</div>
+            <div className="col s1"></div>
         </div>
 
         <Footer
