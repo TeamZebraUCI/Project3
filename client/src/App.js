@@ -113,9 +113,9 @@ class App extends Component{
     return (
       <Router>
         <Switch>
-          <Route exact path="/" render={()=><HomePage msg="testMSG" username=""/>} />
+          <Route exact path="/" render={()=><HomePage username=""/>} />
           <Route exact path="/login" render={()=><LoginPage/>} />
-          <Route render={()=><NoMatchPage msg="testMSG"/>} />
+          <Route render={()=><NoMatchPage />} />
         </Switch>
       </Router>
     );
