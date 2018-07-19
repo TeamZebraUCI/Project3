@@ -21,6 +21,9 @@ class Home extends Component{
                     <title>Home</title>
                 </Helmet>
                 <h1>THIS IS THE HOME PAGE</h1>
+                <div class="wrapper">
+                    <canvas id="canvas" width="1600"  height="900"></canvas>
+                </div>
             </Page>
         );
     }
