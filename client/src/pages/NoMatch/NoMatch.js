@@ -2,7 +2,7 @@ import React from "react";
 import Page from "../../components/MaterializePage";
 import {Helmet} from "react-helmet";
 
-const NoMatch = ()=>(
+const NoMatch = props=>(
     <Page
         style={{
             "background-color":"#9b179b",//<------ THEME COLOR
@@ -14,6 +14,7 @@ const NoMatch = ()=>(
         <title>404 Page</title>
     </Helmet>
     <h1> 404, No Page Found</h1>
+    {props.msg}
     </Page>
 );
 

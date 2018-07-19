@@ -4,6 +4,7 @@ import {Helmet} from "react-helmet";
 import Page from "../../components/MaterializePage";
 
 class Home extends Component{
+
     render(){
         return (
             <Page
@@ -17,6 +18,7 @@ class Home extends Component{
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
+                {this.props.msg}
                 <h1>THIS IS THE HOME PAGE</h1>
             </Page>
         );

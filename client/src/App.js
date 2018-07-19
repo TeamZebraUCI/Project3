@@ -18,6 +18,7 @@ import NoMatchPage from "./pages/NoMatch";
 
 //======================================import components============================================================
 import Page from "./components/MaterializePage";
+import Home from './pages/Home';
 
 //======================================import API================================================================
 // import API from "./utils/API";
@@ -114,9 +115,9 @@ const AuthButton = withRouter(({ history }) => (
 const App = ()=>(
     <Router>
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route component={NoMatchPage} />
+        <Route exact path="/" render={()=><HomePage msg="testMSG"/>}/>
+        <Route exact path="/login" render={()=><LoginPage/>} />
+        <Route render={()=><NoMatchPage msg="testMSG"/>} />
       </Switch>
     </Router>
 );
