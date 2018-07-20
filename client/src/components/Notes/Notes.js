@@ -19,14 +19,15 @@ export default class Notes extends Component {
         let newNote = this.state.notes.slice();
         newNote.push(this.state.currentNote);
 
-
         this.setState({ notes: newNote, currentNote: '' });
     }
+
     deleteNote = i => {
         let removeNote = this.state.notes.slice();
         removeNote.splice(i , 1);
         this.setState({ notes: removeNote })
     }
+
     render() {
         let pinNote = this.state.notes.map((e, i) => {
             return (

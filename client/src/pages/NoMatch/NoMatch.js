@@ -14,7 +14,6 @@ const NoMatch = props=>(
         <title>404 Page</title>
     </Helmet>
     <h1> 404, No Page Found</h1>
-    {props.msg}
     </Page>
 );
 
