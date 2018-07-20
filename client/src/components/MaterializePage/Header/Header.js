@@ -24,10 +24,5 @@ class Header extends Component {
         );
     }
 }
-// const Header = props =>(
-//     <Navbar className="Header" brand={props.text} right style={props.style}>
-//         {NavShow()}
-//     </Navbar>
-// );
 
 export default Header;
