@@ -1,1 +1,2 @@
-export { default } from "./myChart";
+export { default } from "./myChart.js";
+// export * from "./myChart.js";
