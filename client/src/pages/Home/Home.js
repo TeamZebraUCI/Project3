@@ -31,7 +31,10 @@ class Home extends Component{
                     <TickerList
                         selectHandler={this.selectTicker}
                     /></div>
-                    <div className="col s9 mycol2">asdf</div>
+                    <div className="col s9 mycol2">
+                        <div className="row ChartDiv">ChartComponent</div>
+                        <div className="row NotesDiv">NotesComponent</div>
+                    </div>
                 </div>
             </Page>
         );

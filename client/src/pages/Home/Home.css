@@ -3,8 +3,18 @@
 }
 
 .Home .row{
-    margin: 0%;
+    /* margin: 0%;
     border-style: solid;
     border-width: 12px;
-    height: fit-content;
+    height: fit-content; */
+}
+
+.Home .ChartDiv{
+    background-color: aqua;
+    height: 300px;
+}
+
+.Home .NotesDiv{
+    background-color: aqua;
+    height: 300px;
 }
