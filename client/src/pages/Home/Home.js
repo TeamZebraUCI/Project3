@@ -6,12 +6,16 @@ import TickerList from "../../components/TickerList";
 
 class Home extends Component{
 
+    selectTicker = (event)=>{
+        console.log(event);
+    };
+
     render(){
         return (
             <Page
                 style={
                     {
-                    "background-color":"#9b179b",//<------ THEME COLOR
+                    "backgroundColor":"#9b179b",//<------ THEME COLOR
                     }
                 }
                 text="P3"//<---- LOGO TEXT
@@ -22,7 +26,10 @@ class Home extends Component{
                     <title>Home</title>
                 </Helmet>
                 <div className="Home row">
-                    <div className="col s3 mycol1"><TickerList/></div>
+                    <div className="col s3 mycol1">
+                    <TickerList
+                        selectHandler={this.selectTicker}
+                    /></div>
                     <div className="col s9 mycol2">asdf</div>
                 </div>
             </Page>

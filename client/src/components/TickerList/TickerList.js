@@ -13,7 +13,7 @@ class TickerList extends Component {
         this.setState({ query: event.target.value });
     };
 
-    onClick = event => {
+    searchTicker = event => {
         console.log("BUTTON CLICKED");
         if (this.state.query){
             StockAPI.searchSymbol(this.state.query.trim()).then(res=>{
@@ -41,7 +41,7 @@ class TickerList extends Component {
 
         let displayTickers = this.state.Tickers.map((tickerObj)=>{
             return (
-                <CollectionItem href="#">
+                <CollectionItem key={tickerObj.ticker} href="#" onClick={this.props.selectHandler(tickerObj)}>
                     <Chip>
                         <img src={tickerObj.logoURL}/>
                         {tickerObj.ticker}
@@ -59,7 +59,7 @@ class TickerList extends Component {
                     onChange={this.onInputChange}
                     type="text" 
                 />
-                <Button onClick={this.onClick}><Icon left>search</Icon>Search</Button>
+                <Button onClick={this.searchTicker}><Icon left>search</Icon>Search</Button>
             </div>;
 
 
