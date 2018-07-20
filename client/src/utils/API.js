@@ -23,14 +23,16 @@ export default {
             symbols+"&"+types+"&"+range
         );
     },
-    // make a call to the stocks API to get company info
-    //   suing its symbol (will throw error if symbol invalid)
-    searchSymbol: function(symbol){
-        return axios.get(
-            "https://api.iextrading.com/1.0/stock/"+symbol+"/company"
-        );
 
-    }
+    // retreive symbol logo (if logo exists, then company exists)
+    searchSymbol: function(symbol) {
+        console.log(symbol);
+        return axios.get(
+            "https://api.iextrading.com/1.0/stock/"+symbol+"/logo"
+        );
+    },
+
+
 };
 
 // example API.search use
