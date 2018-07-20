@@ -17,6 +17,16 @@
   height: 100%;
 }
 
+.Notes .noteTextArea h5{
+  margin: 0%;
+  padding: 0%;
+}
+
+.Notes .noteTextArea .noteInput{
+  margin: 0%;
+  padding: 0%;
+}
+
 .Notes .addNoteBtnDiv{
   height: 100%;
   text-align: center;

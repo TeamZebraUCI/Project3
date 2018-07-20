@@ -49,8 +49,10 @@ export default class Notes extends Component {
 
         const newNoteHeader = 
             <div className=" newNote row">
-                <div className=" noteTextArea col s10">
+                <div className="noteTextArea col s10">
+                    <h5> Notes: </h5>
                     <Input
+                        className="noteInput"
                         type="textarea"
                         maxlength="200"
                         placeholder='Create a new note!'

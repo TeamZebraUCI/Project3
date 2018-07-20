@@ -46,6 +46,7 @@ class TickerList extends Component {
 
         const searchHeader =
             <div>
+                <h5>Companies</h5>
                 <input
                     className='textArea'
                     placeholder='Ticker'
