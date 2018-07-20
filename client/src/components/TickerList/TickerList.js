@@ -14,7 +14,6 @@ class TickerList extends Component {
     };
 
     searchTicker = event => {
-        console.log("BUTTON CLICKED");
         if (this.state.query){
             StockAPI.searchSymbol(this.state.query.trim()).then(res=>{
                 console.log("API::SearchSymbol::SUCCESS");
@@ -26,10 +25,8 @@ class TickerList extends Component {
                 }
                 newTickers.push(newTIcker);
                 this.setState({ Tickers: newTickers, query: "" });
-                console.log(res);
             }).catch(error=>{
                 console.log("API::SearchSymbol::FAIL");
-                console.log("INVALID COMPANY SYMBOL");
             });
         }
     };
@@ -38,7 +35,7 @@ class TickerList extends Component {
 
         let displayTickers = this.state.Tickers.map((tickerObj)=>{
             return (
-                <CollectionItem key={tickerObj.ticker} href="#" onClick={this.props.selectHandler(tickerObj)}>
+                <CollectionItem key={tickerObj.ticker} href="#" onClick={()=>{this.props.selectHandler(tickerObj)}}>
                     <Chip>
                         <img src={tickerObj.logoURL}/>
                         {tickerObj.ticker}

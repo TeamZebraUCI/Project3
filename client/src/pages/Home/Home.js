@@ -7,8 +7,8 @@ import TickerList from "../../components/TickerList";
 
 class Home extends Component{
 
-    selectTicker = (event)=>{
-        console.log(event);
+    selectTicker = (tickerObj)=>{
+        console.log(tickerObj);
     };
 
     render(){
