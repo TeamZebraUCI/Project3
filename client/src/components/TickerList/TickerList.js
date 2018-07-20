@@ -5,7 +5,7 @@ import StockAPI from "../../utils/API";
 
 class TickerList extends Component {
     state={
-        text:"",
+        query:"",
         Tickers:[]
     };
 
