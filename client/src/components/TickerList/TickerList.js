@@ -5,7 +5,7 @@ import StockAPI from "../../utils/API";
 
 class TickerList extends Component {
     state={
-        query:"",
+        text:"",
         Tickers:[]
     };
 
@@ -31,9 +31,6 @@ class TickerList extends Component {
                 console.log("API::SearchSymbol::FAIL");
                 console.log("INVALID COMPANY SYMBOL");
             });
-            ;
-
-
         }
     };
 
@@ -55,7 +52,7 @@ class TickerList extends Component {
                 <input
                     className='textArea'
                     placeholder='Ticker'
-                    value={this.state.query}
+                    value={this.state.text}
                     onChange={this.onInputChange}
                     type="text" 
                 />
