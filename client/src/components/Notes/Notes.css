@@ -1,12 +1,32 @@
-.notesArea {
-  display: block;
-}
-
-.textArea {
+.Notes .input-field{
   width: 100%;
 }
 
-.notes{
-  display:flex;
-  position: absolute;
+/* .Notes div{
+  border-style: solid;
+  border-color: orange;
+} */
+/* CREATE A NEW NOTE ELEMENT */
+.Notes .newNote{
+  margin: 0%;
+  padding: 0%;
+  height: 150px;
+}
+
+.Notes .noteTextArea{
+  height: 100%;
+}
+
+.Notes .addNoteBtnDiv{
+  height: 100%;
+  text-align: center;
+}
+
+.Notes .addNoteBtn{
+  margin: 34px 0px;
+}
+
+/* NOTE CARDS */
+.Notes .noteCard{
+  
 }

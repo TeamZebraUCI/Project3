@@ -58,11 +58,9 @@ class TickerList extends Component {
 
 
         return(
-            <div className="TickerList">
-                <Collection header={searchHeader}>
-                    {displayTickers}
-                </Collection>
-            </div>
+            <Collection className="TickerList" header={searchHeader}>
+                {displayTickers}
+            </Collection>
         );
     }
 };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Notes.css'
+import {Collection, CollectionItem, Button, Icon, Card, Input} from "react-materialize";
 
 export default class Notes extends Component {
     constructor() {
@@ -29,27 +30,43 @@ export default class Notes extends Component {
     }
 
     render() {
-        let pinNote = this.state.notes.map((e, i) => {
+        let displayNotes = this.state.notes.map((text, i) => {
             return (
-                <li key={i}>{e}<button onClick={() => this.deleteNote(i)}>x</button></li>
+                <CollectionItem key={"Note-"+i}>
+                    <Card className='noteCard'>
+                        <div className="noteContent row">
+                            <div className="noteText col s10">
+                                <p>{text}</p>
+                            </div>
+                            <div className="noteButons col s2">
+                                <Button className="btn-floating waves-effect waves-light" onClick={() => this.deleteNote(i)}><Icon>delete</Icon></Button>
+                            </div>
+                        </div>
+                    </Card>
+                </CollectionItem>
             );
         });
+
+        const newNoteHeader = 
+            <div className=" newNote row">
+                <div className=" noteTextArea col s10">
+                    <Input
+                        type="textarea"
+                        maxlength="200"
+                        placeholder='Create a new note!'
+                        value={this.state.currentNote}
+                        onChange={this.onInputChange}
+                    />
+                </div>
+                <div className=" addNoteBtnDiv col s2">
+                    <Button className="addNoteBtn btn-floating waves-effect waves-light" onClick={this.onClick}><Icon>add</Icon></Button>
+                </div>
+            </div>;
+
         return (
-            <div className='notesArea'>
-                {this.state.notes.length === 0 ? "No notes yet!" : <ul>{pinNote}</ul>}
-                <br />
-                <form>
-                    <div className='notes'>
-                        <input
-                            className='textArea'
-                            placeholder='Create a new note!'
-                            value={this.state.currentNote}
-                            onChange={this.onInputChange}
-                            type="text" />
-                        <button onClick={this.onClick}>Add</button>
-                    </div>
-                </form>
-            </div>
+            <Collection className='Notes' header = {newNoteHeader}>
+                {displayNotes}
+            </Collection>
         )
     }
 }
