@@ -46,6 +46,7 @@ class TickerList extends Component {
 
         const searchHeader =
             <div>
+                <h5>Companies</h5>
                 <input
                     className='textArea'
                     placeholder='Ticker'
@@ -58,11 +59,9 @@ class TickerList extends Component {
 
 
         return(
-            <div className="TickerList">
-                <Collection header={searchHeader}>
-                    {displayTickers}
-                </Collection>
-            </div>
+            <Collection className="TickerList" header={searchHeader}>
+                {displayTickers}
+            </Collection>
         );
     }
 };
