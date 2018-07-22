@@ -1,0 +1,11 @@
+.MyFooter{
+    position: static;
+    bottom:0;
+    width: 100%;
+    height: fit-content;
+}
+
+.MyFooter .container{
+    margin: 0% 10%;
+    padding: 0%;
+}

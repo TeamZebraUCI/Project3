@@ -17,9 +17,6 @@ import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import NoMatchPage from "./pages/NoMatch";
 
-//======================================import components============================================================
-import Page from "./components/Page";
-
 //======================================import API================================================================
 // import API from "./utils/API";
 
@@ -126,6 +123,7 @@ class App extends Component {
  }
  
 // =================================Daniel Logic==================================================
+<<<<<<< HEAD
 // const App = ()=>(
 //   <Page>
 //     <Router>
@@ -137,6 +135,21 @@ class App extends Component {
 //     </Router>
 //   </Page>
 // );
+=======
+class App extends Component{
+  render(){
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/" render={()=><HomePage username=""/>} />
+          <Route exact path="/login" render={()=><LoginPage/>} />
+          <Route render={()=><NoMatchPage />} />
+        </Switch>
+      </Router>
+    );
+  }
+}
+>>>>>>> origin/master
 
 
 export default App;
