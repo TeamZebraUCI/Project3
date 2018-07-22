@@ -3,7 +3,6 @@ import "./Home.css";
 import {Helmet} from "react-helmet";
 import Page from "../../components/MaterializePage";
 import TickerList from "../../components/TickerList";
-import Notes from "../../components/Notes";
 
 
 class Home extends Component{
@@ -34,7 +33,7 @@ class Home extends Component{
                     /></div>
                     <div className="col s9 mycol2">
                         <div className="row ChartDiv">ChartComponent</div>
-                        <div className="row NotesDiv"><Notes/></div>
+                        <div className="row NotesDiv">NotesComponent</div>
                     </div>
                 </div>
             </Page>

@@ -1,8 +1,7 @@
 .Home{
-    padding: 0%;
     margin: 20px 0px;
 }
-/* shows all divs within page, (used for structureing) */
+
 .Home .row{
     /* margin: 0%;
     border-style: solid;
@@ -11,6 +10,11 @@
 }
 
 .Home .ChartDiv{
+    background-color: aqua;
+    height: 300px;
+}
+
+.Home .NotesDiv{
     background-color: aqua;
     height: 300px;
 }
