@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom"
 import "./Login.css";
 
 export default class Login extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             user: "",
             password: "",
@@ -28,6 +29,9 @@ export default class Login extends Component {
     };
 
     render() {
+
+
+        console.log(this);
         return (
             <div className="Login">
             <form>
@@ -44,8 +48,15 @@ export default class Login extends Component {
                     value={this.state.password}
                     onChange={this.handleInputChange}
                     type="password" />
-                <button className="submitBtn" onClick={this.handleFormSubmit}>Submit</button>
+                <button 
+                    type = "button" 
+                    className="submitBtn" 
+                    onClick={(e) => {
+                        this.props.login(this.state.user , this.state.password)}
+                    }
+                >Login</button>
             </form>
+            <Link to='/Dashboard'>Dashboard Page</Link>
             </div>
         )
     }

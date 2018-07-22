@@ -5,11 +5,14 @@ import "./Login.css";
 
 
 class Login extends Component{
+    constructor(props) {
+        super(props)
+    }
 
     render(){
         return (
             <div id="container">
-                <LoginComp />
+                <LoginComp login = {this.props.login}/>
             </div>
         );
     }
