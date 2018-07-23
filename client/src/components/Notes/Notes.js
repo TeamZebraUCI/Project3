@@ -24,6 +24,7 @@ class Notes extends Component {
     //     removeNote.splice(i , 1);
     //     this.setState({ notes: removeNote })
     // }
+    
     addNoteBtn = ()=>{
         this.props.handleAddNote(this.state.currentNote)
         this.setState({currentNote:""});

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Collection, CollectionItem, Button, Icon,Chip} from "react-materialize";
 import './TickerList.css';
+import Input from "../../../node_modules/react-materialize/lib/Input";
 
 class TickerList extends Component {
     state={
@@ -14,7 +15,6 @@ class TickerList extends Component {
     searchBtn = ()=>{
         this.props.handleSearchTicker(this.state.query);
         this.setState({query:""});
-        console.log("FLAG");
     };
 
     render(){
@@ -34,7 +34,7 @@ class TickerList extends Component {
         const searchHeader =
             <div>
                 <h5>Companies</h5>
-                <input
+                <Input
                     className='textArea'
                     placeholder='Ticker'
                     value={this.state.query}

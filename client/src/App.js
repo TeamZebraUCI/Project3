@@ -41,6 +41,7 @@ class App extends Component{
       "username": username,
       "password": password
     };
+
     console.log(user);
     axios.post("/api/user", user).then(res => {
       console.log(res);
@@ -78,7 +79,8 @@ class App extends Component{
     this.setState({
       loggedIn: false,
       username:"",
-      tickerList:[]
+      tickerList:[],
+      notes:[]
     });
     console.log("saving the state below");
     console.log(this.state);
@@ -107,7 +109,7 @@ class App extends Component{
 
   addNote = (newNote)=>{
     let newNotes = this.state.notes;
-    newNotes.push(newNote)
+    newNotes.push(newNote);
     this.setState({notes:newNotes});
     console.log(this.state);
     sessionStorage.setItem("state",JSON.stringify(this.state));
