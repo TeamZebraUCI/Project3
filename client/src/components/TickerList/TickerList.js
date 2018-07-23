@@ -6,35 +6,17 @@ import StockAPI from "../../utils/API";
 class TickerList extends Component {
     state={
         query:"",
-        Tickers:[]
     };
 
     onInputChange = (event) => {
         this.setState({ query: event.target.value });
     };
 
-    searchTicker = event => {
-        if (this.state.query){
-            StockAPI.searchSymbol(this.state.query.trim()).then(res=>{
-                console.log("API::SearchSymbol::SUCCESS");
-                //add ticker to list
-                let newTickers = this.state.Tickers;
-                const newTIcker = {
-                    ticker: this.state.query,
-                    logoURL: res.data.url
-                }
-                newTickers.push(newTIcker);
-                this.setState({ Tickers: newTickers, query: "" });
-            }).catch(error=>{
-                console.log("API::SearchSymbol::FAIL");
-            });
-        }
-    };
-
     render(){
 
-        let displayTickers = this.state.Tickers.map((tickerObj)=>{
-            return (
+        // let displayTickers = this.state.Tickers.map((tickerObj)=>{
+        let displayTickers = this.props.tickerList.map((tickerObj)=>{
+                return (
                 <CollectionItem key={tickerObj.ticker} href="#" onClick={()=>{this.props.selectHandler(tickerObj)}}>
                     <Chip>
                         <img src={tickerObj.logoURL}/>
@@ -54,7 +36,7 @@ class TickerList extends Component {
                     onChange={this.onInputChange}
                     type="text" 
                 />
-                <Button onClick={this.searchTicker}><Icon left>search</Icon>Search</Button>
+                <Button onClick={()=>{this.props.handleSearchTicker(this.state.query)}}><Icon left>search</Icon>Search</Button>
             </div>;
 
 
