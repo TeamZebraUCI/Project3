@@ -28,6 +28,7 @@ class Home extends Component{
                     "backgroundColor":"#9b179b",//<------ THEME COLOR
                     }
                 }
+
                 text="P3"//<---- LOGO TEXT
                 promptLogin={true}
                 username = {this.props.username}
@@ -35,6 +36,7 @@ class Home extends Component{
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
+
                 <div className="Home row">
                     <div className="col s3 mycol1">
                         <TickerList
@@ -49,6 +51,7 @@ class Home extends Component{
                         <div className="row NotesDiv"><Notes/></div>
                     </div>
                 </div>
+                
             </Page>
         );
     }

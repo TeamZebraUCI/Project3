@@ -20,12 +20,19 @@ import StockAPI from "./utils/API";
 class App extends Component{
   constructor(props) {
     super(props)
- 
-    this.state = {
-      loggedIn:false,
-      username:'',
-      tickerList:[]
+
+    const sessionState = sessionStorage.getItem("state");
+
+    if(sessionState){ 
+      this.state = JSON.parse(sessionStorage.getItem("state"));
+    }else{
+      this.state = {
+        loggedIn:false,
+        username:'',
+        tickerList:[]
+      }  
     }
+ 
  
   }
  
@@ -53,6 +60,7 @@ class App extends Component{
       "password": password
     };
     axios.post("/api/user/login", user).then(res => {
+      console.log(res.data);
       alert(res.data.message);
       this.setState({
         loggedIn:res.data.loggedIn,
@@ -74,6 +82,7 @@ class App extends Component{
               }
               newTickers.push(newTIcker);
               this.setState({ Tickers: newTickers});
+              sessionStorage.setItem("state",JSON.stringify(this.state));
           }).catch(error=>{
               console.log("API::SearchSymbol::FAIL");
           });
@@ -93,9 +102,6 @@ class App extends Component{
                   username={this.state.username}
                   tickerList = {this.state.tickerList}
                   handleSearchTicker = {this.searchTicker}
-
-                  
-
                 />} />
             <Route
               exact
