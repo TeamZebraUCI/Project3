@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require('express-session');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
@@ -8,6 +9,16 @@ const PORT = process.env.PORT || 3001;
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(session({
+  secret: "sdfghjfdEW$T%#$^*%I&ORYUFTKJFHTRGTR#T$5t",
+    resave: true,
+    saveUninitialized: false,
+    cookie:{
+      maxAge: (1000*60*60*24*14)
+    }
+ }))
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
