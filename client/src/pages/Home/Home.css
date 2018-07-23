@@ -1,24 +1,28 @@
-<<<<<<< HEAD
 #container{
     text-align: center;
 }
 
 .wrapper {
-    max-width: 600px;
+    max-width: 800px;
     max-height: 400px;
-    margin: 50px auto;
     border: 3px solid red;
-=======
-.Home{
+}
+
+.Home {
     margin: 20px 0px;
 }
 
-.Home .row{
-    /* margin: 0%;
+/* .Home .row{
+    margin: 0%;
     border-style: solid;
     border-width: 12px;
-    height: fit-content; */
-}
+    height: fit-content;
+} */
+
+/* .ChartDiv {
+    height: auto;
+    width: auto;
+} */
 
 .Home .ChartDiv{
     background-color: aqua;
@@ -28,5 +32,9 @@
 .Home .NotesDiv{
     background-color: aqua;
     height: 300px;
->>>>>>> origin/master
+}
+
+.chartBtn {
+    margin-top: 0;
+    margin-bottom: 20px;
 }

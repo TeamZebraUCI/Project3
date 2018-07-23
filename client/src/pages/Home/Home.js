@@ -2,33 +2,22 @@ import React, { Component } from "react";
 import "./Home.css";
 import { Helmet } from "react-helmet";
 import Page from "../../components/MaterializePage";
-<<<<<<< HEAD
 import MyChart from "../../components/MyChart/myChart";
-=======
 import TickerList from "../../components/TickerList";
 
->>>>>>> origin/master
 
 class Home extends Component {
 
-<<<<<<< HEAD
-    render() {
-=======
-    selectTicker = (tickerObj)=>{
+    selectTicker = (tickerObj) => {
         console.log(tickerObj);
     };
 
-    render(){
->>>>>>> origin/master
+    render() {
         return (
             <Page
                 style={
                     {
-<<<<<<< HEAD
-                        "background-color": "#9b179b",//<------ THEME COLOR
-=======
-                    "backgroundColor":"#9b179b",//<------ THEME COLOR
->>>>>>> origin/master
+                        "backgroundColor": "#9b179b",//<------ THEME COLOR
                     }
                 }
                 text="P3"//<---- LOGO TEXT
@@ -38,12 +27,11 @@ class Home extends Component {
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
-<<<<<<< HEAD
-                <h1>THIS IS THE HOME PAGE</h1>
-                <div class="wrapper">
+
+                {/* <div className="wrapper">
                     <canvas id="myChart" width="1600" height="900"></canvas>
-                </div>
-                <button id="nike">
+                </div> */}
+                {/* <button id="nike">
                     Nike
                 </button>
                 <button id="lexus">
@@ -60,22 +48,36 @@ class Home extends Component {
                 </button>
                 <button id="empty">
                     Remove Dataset
-                </button>
-=======
+                </button> */}
+
                 <div className="Home row">
                     <div className="col s3 mycol1">
-                    <TickerList
-                        selectHandler={this.selectTicker}
-                    /></div>
+                        <TickerList
+                            selectHandler={this.selectTicker}
+                        /></div>
                     <div className="col s9 mycol2">
-                        <div className="row ChartDiv">ChartComponent</div>
+                        {/* <div className="row ChartDiv">ChartComponent</div> */}
+                        <div className="wrapper">
+                            <canvas className="row ChartDiv" id="myChart" width="1600" height="900"></canvas>
+                        </div>
+                        <button className="chartBtn" id="empty">
+                            Remove Dataset
+                        </button>
+                        <button className="chartBtn" id="nike">
+                            Nike
+                        </button>
+                        <button className="chartBtn" id="lexus">
+                            Lexus
+                        </button>
+                        <button className="chartBtn" id="apple">
+                            Apple
+                        </button>
                         <div className="row NotesDiv">NotesComponent</div>
                     </div>
                 </div>
->>>>>>> origin/master
             </Page>
-                    );
-                }
-            };
-            
+        );
+    }
+};
+
 export default Home;

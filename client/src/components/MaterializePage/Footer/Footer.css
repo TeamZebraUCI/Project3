@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 .Footer{
     position:fixed;
-=======
+}
+
 .MyFooter{
     position: static;
->>>>>>> origin/master
     bottom:0;
     width: 100%;
     height: fit-content;
