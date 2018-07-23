@@ -13,6 +13,13 @@ class Home extends Component{
         console.log(tickerObj);
     };
 
+    showSaveButton = ()=>{
+        if(this.props.username){
+            return <SaveButton/>;
+        }
+        return;
+    };
+
     render(){
         return (
             <Page
@@ -29,14 +36,13 @@ class Home extends Component{
                     <title>Home</title>
                 </Helmet>
                 <div className="Home row">
-                    {this.props.username}
                     <div className="col s3 mycol1">
                         <TickerList
                             tickerList = {this.props.tickerList}
                             selectHandler={this.selectTicker}
                             handleSearchTicker = {this.props.handleSearchTicker}
                             />
-                        <SaveButton/>
+                        {this.showSaveButton()}
                     </div>
                     <div className="col s9 mycol2">
                         <div className="row ChartDiv">ChartComponent</div>

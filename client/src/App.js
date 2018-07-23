@@ -80,20 +80,6 @@ class App extends Component{
       }
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   render(){
     return (
@@ -107,18 +93,20 @@ class App extends Component{
                   username={this.state.username}
                   tickerList = {this.state.tickerList}
                   handleSearchTicker = {this.searchTicker}
+
+                  
+
                 />} />
             <Route
               exact
               path="/login"
               render={()=>
                 <LoginPage
-                loggedIn={this.state.loggedIn}
-                username={this.state.username}
-                signUp={this.signUp}
-                logIn={this.logIn}
-              />}
-            />
+                  loggedIn={this.state.loggedIn}
+                  username={this.state.username}
+                  signUp={this.signUp}
+                  logIn={this.logIn}
+                />} />
             <Route render={()=><NoMatchPage />} />
           </Switch>
       </Router>
