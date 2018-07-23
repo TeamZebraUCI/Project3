@@ -2,11 +2,12 @@ const db = require("../models");
 module.exports = {
     create: (req, res)=>{
         console.log("CREATE USER:");
+        const newUser = {
+            "username": req.body.username,
+            "password": req.body.password
+        };
         console.log(req.body);
-        const user = {
-            username: req.body.username,
-            password: req.body.password,
-        }
+    db.User.create(newUser)
         console.log("UserCreated");
     },
     update: (req, res)=>{

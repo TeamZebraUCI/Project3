@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./Login.css";
+import axios from "axios";
 
 export default class Login extends Component {
 
@@ -20,12 +21,17 @@ export default class Login extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault();
-        console.log(`Testing: ${this.state.user} ${this.state.password}`); //<------ DO SOMETHING WITH CREDENTIALS
-        this.setState({
-            user: "",
-            password: ""
-        });
-    };
+
+        const user = {
+            "username": this.state.user,
+            "password": this.state.password
+        };
+        console.log(user);
+        axios.post("/api/user", user)
+            .then(res => {
+                console.log(res);
+            })
+        }
 
     render() {
         return (
