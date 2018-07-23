@@ -4,6 +4,7 @@ import {Helmet} from "react-helmet";
 import Page from "../../components/MaterializePage";
 import TickerList from "../../components/TickerList";
 import Notes from "../../components/Notes";
+import SaveButton from "../../components/SaveButton";
 
 
 class Home extends Component{
@@ -29,9 +30,11 @@ class Home extends Component{
                 </Helmet>
                 <div className="Home row">
                     <div className="col s3 mycol1">
-                    <TickerList
-                        selectHandler={this.selectTicker}
-                    /></div>
+                        <TickerList
+                            selectHandler={this.selectTicker}
+                        />
+                        <SaveButton/>
+                    </div>
                     <div className="col s9 mycol2">
                         <div className="row ChartDiv">ChartComponent</div>
                         <div className="row NotesDiv"><Notes/></div>

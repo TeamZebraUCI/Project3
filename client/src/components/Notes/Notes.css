@@ -38,5 +38,5 @@
 
 /* NOTE CARDS */
 .Notes .noteCard{
-  
+  word-wrap: break-word;
 }

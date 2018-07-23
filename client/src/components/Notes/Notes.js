@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import './Notes.css'
+import React, { Component } from 'react';
+import './Notes.css';
 import {Collection, CollectionItem, Button, Icon, Card, Input} from "react-materialize";
 
 export default class Notes extends Component {
@@ -36,7 +36,7 @@ export default class Notes extends Component {
                     <Card className='noteCard'>
                         <div className="noteContent row">
                             <div className="noteText col s10">
-                                <p>{text}</p>
+                                {text}
                             </div>
                             <div className="noteButons col s2">
                                 <Button className="btn-floating waves-effect waves-light" onClick={() => this.deleteNote(i)}><Icon>delete</Icon></Button>
