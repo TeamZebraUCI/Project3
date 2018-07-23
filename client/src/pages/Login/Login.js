@@ -28,7 +28,8 @@ class Login extends Component{
                       username={this.props.username} 
                       signUp={this.props.signUp}
                       logIn={this.props.logIn}
-                    />
+                      logOut={this.props.logOut}
+                      />
                 </div>
             </Page>
         );

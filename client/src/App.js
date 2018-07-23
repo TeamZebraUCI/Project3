@@ -23,17 +23,16 @@ class App extends Component{
 
     const sessionState = sessionStorage.getItem("state");
 
-    if(sessionState){ 
+    if(sessionState){
       this.state = JSON.parse(sessionStorage.getItem("state"));
     }else{
       this.state = {
         loggedIn:false,
         username:'',
-        tickerList:[]
-      }  
+        tickerList:[],
+        notes:[]
+      }
     }
- 
- 
   }
  
   signUp = (e, username, password) => {
@@ -50,7 +49,8 @@ class App extends Component{
         loggedIn:res.data.loggedIn,
         username:res.data.username
       });
-    })
+    });
+    sessionStorage.setItem("state",JSON.stringify(this.state));
   }
  
   logIn = (e, username, password) => {
@@ -64,10 +64,26 @@ class App extends Component{
       alert(res.data.message);
       this.setState({
         loggedIn:res.data.loggedIn,
-        username:res.data.username
+        username:res.data.username,
       });
-      console.log(this.state);
+      
+      sessionStorage.setItem("state",JSON.stringify(this.state));
     })
+  }
+
+  logOut = (e) => {
+    e.preventDefault();
+    console.log(this.state);
+
+    this.setState({
+      loggedIn: false,
+      username:"",
+      tickerList:[]
+    });
+    console.log("saving the state below");
+    console.log(this.state);
+
+    sessionStorage.setItem("state",JSON.stringify(this.state));
   }
 
   searchTicker = (query) => {
@@ -89,6 +105,14 @@ class App extends Component{
       }
   };
 
+  addNote = (newNote)=>{
+    let newNotes = this.state.notes;
+    newNotes.push(newNote)
+    this.setState({notes:newNotes});
+    console.log(this.state);
+    sessionStorage.setItem("state",JSON.stringify(this.state));
+  }
+
   
   render(){
     return (
@@ -102,6 +126,8 @@ class App extends Component{
                   username={this.state.username}
                   tickerList = {this.state.tickerList}
                   handleSearchTicker = {this.searchTicker}
+                  handleAddNote = {this.addNote}
+                  notes = {this.state.notes}
                 />} />
             <Route
               exact
@@ -112,6 +138,7 @@ class App extends Component{
                   username={this.state.username}
                   signUp={this.signUp}
                   logIn={this.logIn}
+                  logOut={this.logOut}
                 />} />
             <Route render={()=><NoMatchPage />} />
           </Switch>

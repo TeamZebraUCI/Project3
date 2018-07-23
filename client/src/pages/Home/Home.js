@@ -48,7 +48,12 @@ class Home extends Component{
                     </div>
                     <div className="col s9 mycol2">
                         <div className="row ChartDiv">ChartComponent</div>
-                        <div className="row NotesDiv"><Notes/></div>
+                        <div className="row NotesDiv">
+                            <Notes
+                                handleAddNote={this.props.handleAddNote}
+                                notes = {this.props.notes}
+                            />
+                        </div>
                     </div>
                 </div>
                 

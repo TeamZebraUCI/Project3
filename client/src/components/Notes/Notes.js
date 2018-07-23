@@ -6,7 +6,6 @@ export default class Notes extends Component {
     constructor() {
         super();
         this.state = {
-            notes: [],
             currentNote: ""
         };
     }
@@ -15,23 +14,24 @@ export default class Notes extends Component {
         this.setState({ currentNote: e.target.value });
     }
 
-    onClick = e => {
-        e.preventDefault();
-        let newNote = this.state.notes.slice();
-        newNote.push(this.state.currentNote);
+    // onClick = e => {
+    //     e.preventDefault();
+    //     let newNote = this.state.notes.slice();
+    //     newNote.push(this.state.currentNote);
 
-        this.setState({ notes: newNote, currentNote: '' });
-    }
+    //     this.setState({ notes: newNote, currentNote: '' });
+    // }
 
-    deleteNote = i => {
-        let removeNote = this.state.notes.slice();
-        removeNote.splice(i , 1);
-        this.setState({ notes: removeNote })
-    }
+    // deleteNote = i => {
+    //     let removeNote = this.state.notes.slice();
+    //     removeNote.splice(i , 1);
+    //     this.setState({ notes: removeNote })
+    // }
 
     render() {
-        let displayNotes = this.state.notes.map((text, i) => {
-            return (
+        // let displayNotes = this.state.notes.map((text, i) => {
+        let displayNotes = this.props.notes.map((text, i) => {
+                return (
                 <CollectionItem key={"Note-"+i}>
                     <Card className='noteCard'>
                         <div className="noteContent row">
@@ -61,7 +61,7 @@ export default class Notes extends Component {
                     />
                 </div>
                 <div className=" addNoteBtnDiv col s2">
-                    <Button className="addNoteBtn btn-floating waves-effect waves-light" onClick={this.onClick}><Icon>add</Icon></Button>
+                    <Button className="addNoteBtn btn-floating waves-effect waves-light" onClick={()=>{this.props.handleAddNote(this.state.currentNote)}}><Icon>add</Icon></Button>
                 </div>
             </div>;
 
