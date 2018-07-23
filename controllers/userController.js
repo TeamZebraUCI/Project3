@@ -1,14 +1,48 @@
 const db = require("../models");
 module.exports = {
-    create: (req, res)=>{
-        console.log("CREATE USER:");
+    signup: (req, res)=>{
+        console.log(req.session);
         const newUser = {
             "username": req.body.username,
             "password": req.body.password
         };
-        console.log(req.body);
-    db.User.create(newUser)
-        console.log("UserCreated");
+        db.User.create(newUser)
+        .then(returnedUser => {
+            if (returnedUser) {
+                req.session.user=returnedUser._id
+                res.send({message:returnedUser.username + " created successfully!"})
+            }
+        })
+        .catch(err => {
+            res.send({message: "Username already taken..."})
+        })
+    },
+    login: (req, res)=>{ 
+        db.User.findOne({"username": req.body.username})
+        .then(returnedUser => {
+            if (returnedUser) {
+                if (returnedUser.password === req.body.password) {
+                    req.session.user=returnedUser._id
+                    res.send({
+                        message:returnedUser.username + " logged in successfully!",
+                        loggedIn:true,
+                        username:returnedUser.username  
+                    }) 
+                } else {
+                    res.send({
+                        message:" password invalid...",
+                        loggedIn:false,
+                        username:"" 
+                    })
+                }
+            } else {
+                res.send({message: "Username not found..."})
+            }
+            
+        })
+        .catch(err => {
+            res.send({message: "Username not found..."})
+        })
     },
     update: (req, res)=>{
         console.log("UPDATE USER:");
@@ -17,11 +51,6 @@ module.exports = {
     },
     remove: (req, res)=>{
         console.log("DELETE USER:");
-        console.log("--DO NOTHING");
-        console.log(req.body);
-    },
-    find: (req, res)=>{ 
-        console.log("FIND USER");
         console.log("--DO NOTHING");
         console.log(req.body);
     }
