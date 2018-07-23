@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Collection, CollectionItem, Button, Icon,Chip} from "react-materialize";
 import './TickerList.css';
-import StockAPI from "../../utils/API";
 
 class TickerList extends Component {
     state={
@@ -12,11 +11,17 @@ class TickerList extends Component {
         this.setState({ query: event.target.value });
     };
 
+    searchBtn = ()=>{
+        this.props.handleSearchTicker(this.state.query);
+        this.setState({query:""});
+        console.log("FLAG");
+    };
+
     render(){
 
         // let displayTickers = this.state.Tickers.map((tickerObj)=>{
         let displayTickers = this.props.tickerList.map((tickerObj)=>{
-                return (
+            return (
                 <CollectionItem key={tickerObj.ticker} href="#" onClick={()=>{this.props.selectHandler(tickerObj)}}>
                     <Chip>
                         <img src={tickerObj.logoURL}/>
@@ -32,11 +37,11 @@ class TickerList extends Component {
                 <input
                     className='textArea'
                     placeholder='Ticker'
-                    value={this.state.text}
+                    value={this.state.query}
                     onChange={this.onInputChange}
                     type="text" 
                 />
-                <Button onClick={()=>{this.props.handleSearchTicker(this.state.query)}}><Icon left>search</Icon>Search</Button>
+                <Button onClick={this.searchBtn}><Icon left>search</Icon>Search</Button>
             </div>;
 
 

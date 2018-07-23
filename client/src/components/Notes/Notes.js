@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import './Notes.css';
 import {Collection, CollectionItem, Button, Icon, Card, Input} from "react-materialize";
+import './Notes.css';
 
-export default class Notes extends Component {
-    constructor() {
-        super();
-        this.state = {
-            currentNote: ""
-        };
-    }
+class Notes extends Component {
+    state = {
+        currentNote: ""
+    };
 
-    onInputChange = (e) => {
-        this.setState({ currentNote: e.target.value });
+    onInputChange = (event) => {
+        this.setState({ currentNote: event.target.value });
     }
 
     // onClick = e => {
@@ -27,6 +24,11 @@ export default class Notes extends Component {
     //     removeNote.splice(i , 1);
     //     this.setState({ notes: removeNote })
     // }
+    addNoteBtn = ()=>{
+        this.props.handleAddNote(this.state.currentNote)
+        this.setState({currentNote:""});
+    };
+
 
     render() {
         // let displayNotes = this.state.notes.map((text, i) => {
@@ -39,7 +41,7 @@ export default class Notes extends Component {
                                 {text}
                             </div>
                             <div className="noteButons col s2">
-                                <Button className="btn-floating waves-effect waves-light" onClick={() => this.deleteNote(i)}><Icon>delete</Icon></Button>
+                                <Button className="btn-floating waves-effect waves-light" onClick={() => this.props.handleDeleteNote(i)}><Icon>delete</Icon></Button>
                             </div>
                         </div>
                     </Card>
@@ -61,7 +63,7 @@ export default class Notes extends Component {
                     />
                 </div>
                 <div className=" addNoteBtnDiv col s2">
-                    <Button className="addNoteBtn btn-floating waves-effect waves-light" onClick={()=>{this.props.handleAddNote(this.state.currentNote)}}><Icon>add</Icon></Button>
+                    <Button className="addNoteBtn btn-floating waves-effect waves-light" onClick={()=>{this.addNoteBtn()}}><Icon>add</Icon></Button>
                 </div>
             </div>;
 
@@ -69,6 +71,8 @@ export default class Notes extends Component {
             <Collection className='Notes' header = {newNoteHeader}>
                 {displayNotes}
             </Collection>
-        )
+        );
     }
-}
+};
+
+export default Notes;

@@ -52,6 +52,7 @@ class Home extends Component{
                             <Notes
                                 handleAddNote={this.props.handleAddNote}
                                 notes = {this.props.notes}
+                                handleDeleteNote = {this.props.handleDeleteNote}
                             />
                         </div>
                     </div>

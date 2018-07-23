@@ -113,6 +113,13 @@ class App extends Component{
     sessionStorage.setItem("state",JSON.stringify(this.state));
   }
 
+  deleteNote = (noteIndex)=>{
+    console.log("SELECTED NOTE WITH INDEX: " + noteIndex);
+    let newNotes = this.state.notes.splice(noteIndex,1);
+    this.setState({notes:newNotes});
+    sessionStorage.setItem("state",JSON.stringify(this.state));
+  }
+
   
   render(){
     return (
@@ -128,6 +135,7 @@ class App extends Component{
                   handleSearchTicker = {this.searchTicker}
                   handleAddNote = {this.addNote}
                   notes = {this.state.notes}
+                  handleDeleteNote = {this.deleteNote}
                 />} />
             <Route
               exact
