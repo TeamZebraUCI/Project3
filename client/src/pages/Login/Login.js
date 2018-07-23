@@ -13,7 +13,7 @@ class Login extends Component{
             <Page
                 style={
                     {
-                    "background-color":"#9b179b",//<------ THEME COLOR
+                    "backgroundColor":"#9b179b",//<------ THEME COLOR
                     }
                 }
                 text="P3"//<---- LOGO TEXT
@@ -23,7 +23,12 @@ class Login extends Component{
                     <title>Login</title>
                 </Helmet>
                 <div id="container">
-                    <LoginComp />
+                    <LoginComp 
+                      loggedIn={this.props.loggedIn} 
+                      username={this.props.username} 
+                      signUp={this.props.signUp}
+                      logIn={this.props.logIn}
+                    />
                 </div>
             </Page>
         );
