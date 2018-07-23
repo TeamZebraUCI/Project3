@@ -14,6 +14,13 @@
 
 /* .Home .row{
     margin: 0%;
+.Home{
+    padding: 0%;
+    margin: 20px 0px;
+}
+/* shows all divs within page, (used for structureing) */
+/*.Home .row{
+    margin: 0%;
     border-style: solid;
     border-width: 12px;
     height: fit-content;
@@ -24,7 +31,7 @@
     width: auto;
 } */
 
-.Home .ChartDiv{
+/* .Home .ChartDiv{
     background-color: aqua;
     height: 300px;
 }
@@ -32,7 +39,7 @@
 .Home .NotesDiv{
     background-color: aqua;
     height: 300px;
-}
+} */
 
 .chartBtn {
     margin-top: 0;

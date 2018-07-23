@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import Page from "../../components/MaterializePage";
 import MyChart from "../../components/MyChart/myChart";
 import TickerList from "../../components/TickerList";
+import Notes from "../../components/Notes";
 
 
 class Home extends Component {
@@ -28,28 +29,6 @@ class Home extends Component {
                     <title>Home</title>
                 </Helmet>
 
-                {/* <div className="wrapper">
-                    <canvas id="myChart" width="1600" height="900"></canvas>
-                </div> */}
-                {/* <button id="nike">
-                    Nike
-                </button>
-                <button id="lexus">
-                    Lexus
-                </button>
-                <button id="apple">
-                    Apple
-                </button>
-                <button id="addYear">
-                    Add time
-                </button>
-                <button id="removeYear">
-                    Remove time
-                </button>
-                <button id="empty">
-                    Remove Dataset
-                </button> */}
-
                 <div className="Home row">
                     <div className="col s3 mycol1">
                         <TickerList
@@ -63,16 +42,12 @@ class Home extends Component {
                         <button className="chartBtn" id="empty">
                             Remove Dataset
                         </button>
-                        <button className="chartBtn" id="nike">
-                            Nike
-                        </button>
-                        <button className="chartBtn" id="lexus">
-                            Lexus
-                        </button>
                         <button className="chartBtn" id="apple">
                             Apple
                         </button>
-                        <div className="row NotesDiv">NotesComponent</div>
+                        {/* <div className="row NotesDiv">NotesComponent</div>
+                        <div className="row ChartDiv">ChartComponent</div> */}
+                        <div className="row NotesDiv"><Notes/></div>
                     </div>
                 </div>
             </Page>
