@@ -13,7 +13,7 @@ class Login extends Component{
             <Page
                 style={
                     {
-                    "background-color":"#9b179b",//<------ THEME COLOR
+                    "backgroundColor":"#9b179b",//<------ THEME COLOR
                     }
                 }
                 text="P3"//<---- LOGO TEXT
