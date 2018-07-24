@@ -165,7 +165,6 @@ class Home extends Component {
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
-                {console.log(this.props.notes)}
                 <div className="Home row">
                     <div className="col s3 mycol1">
                         <TickerList

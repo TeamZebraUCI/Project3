@@ -111,13 +111,12 @@ class App extends Component{
     let newNotes = this.state.notes;
     newNotes.push(newNote);
     this.setState({notes:newNotes});
-    console.log(this.state);
     sessionStorage.setItem("state",JSON.stringify(this.state));
   }
 
   deleteNote = (noteIndex)=>{
-    console.log("SELECTED NOTE WITH INDEX: " + noteIndex);
-    let newNotes = this.state.notes.splice(noteIndex,1);
+    let newNotes = this.state.notes;
+    newNotes.splice(noteIndex,1);
     this.setState({notes:newNotes});
     sessionStorage.setItem("state",JSON.stringify(this.state));
   }
@@ -133,6 +132,7 @@ class App extends Component{
               render={()=>
                 <HomePage 
                   username={this.state.username}
+
                   tickerList = {this.state.tickerList}
                   handleSearchTicker = {this.searchTicker}
 
