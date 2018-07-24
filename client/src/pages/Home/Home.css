@@ -1,16 +1,47 @@
+#container{
+    text-align: center;
+}
+
+.wrapper {
+    max-width: 800px;
+    max-height: 400px;
+    /* border: 3px solid black; */
+}
+
+.Home {
+    margin: 20px 0px;
+}
+
+/* .Home .row{
+    margin: 0%;
 .Home{
     padding: 0%;
     margin: 20px 0px;
 }
 /* shows all divs within page, (used for structureing) */
-.Home .row{
-    /* margin: 0%;
+/*.Home .row{
+    margin: 0%;
     border-style: solid;
     border-width: 12px;
-    height: fit-content; */
-}
+    height: fit-content;
+} */
 
-.Home .ChartDiv{
+/* .ChartDiv {
+    height: auto;
+    width: auto;
+} */
+
+/* .Home .ChartDiv{
     background-color: aqua;
     height: 300px;
+}
+
+.Home .NotesDiv{
+    background-color: aqua;
+    height: 300px;
+} */
+
+.chartBtn {
+    margin-top: 0;
+    margin-bottom: 20px;
 }
