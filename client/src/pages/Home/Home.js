@@ -84,7 +84,9 @@ function changeData(arr) {
     data.datasets[0].data = arr;
 }
 
+// start counting at 20
 var zero = 20;
+// update all active datasets
 function adddata() {
 	const newData = data.datasets.map(e => {
   	return Math.floor((Math.random() * 9000) - 3000);
@@ -98,15 +100,15 @@ function adddata() {
   
   data.labels.push(zero);
   data.labels.splice(0, 1);
-
+  // add 1 to each new count after 20
   zero++;
   //data.update();
 }
 
+// time between updates
 setInterval(function() {
   adddata();
 }, 1000);
-
 //===============================================================================================================================================
 //===============================================================================================================================================  
 
@@ -114,6 +116,28 @@ class Home extends Component {
 
     selectTicker = (tickerObj) => {
         console.log(tickerObj);
+    };
+
+    // remove dataset button
+    removeBtn = e => {
+        data.datasets.splice(0, 1);
+        //data.update();
+    }
+
+    // add apple dataset
+    appleBtn = e => {
+        var newDataset = {
+            data: [3500, -432, -777, 5200, -1234, 5400, 4321],
+            label: "Apple",
+            borderColor: "green",
+            backgroundColor: "green",
+            fill: false,
+            lineTension: 0
+          }
+          // You add the newly created dataset to the list of `data`
+          data.datasets.push(newDataset);
+          // You update the chart to take into account the new dataset
+          // data.update();
     };
 
     render() {
@@ -138,15 +162,14 @@ class Home extends Component {
                             selectHandler={this.selectTicker}
                         /></div>
                     <div className="col s9 mycol2">
-                        {/* <div className="row ChartDiv">ChartComponent</div> */}
                         <div className="wrapper">
-                            {/* <canvas className="row ChartDiv" id="myChart" width="1600" height="900"></canvas> */}
+                            {/* THIS IS THE CHART */}
                             <Line data={data} />
                         </div>
-                        <button className="chartBtn" id="empty">
+                        <button className="chartBtn" id="empty" onClick={this.removeBtn}>
                             Remove Dataset
                         </button>
-                        <button className="chartBtn" id="apple">
+                        <button className="chartBtn" id="apple" onClick={this.appleBtn}>
                             Apple
                         </button>
                         {/* <div className="row NotesDiv">NotesComponent</div>
