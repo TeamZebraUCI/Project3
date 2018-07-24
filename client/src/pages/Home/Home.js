@@ -88,26 +88,26 @@ function changeData(arr) {
 var zero = 20;
 // update all active datasets
 function adddata() {
-	const newData = data.datasets.map(e => {
-  	return Math.floor((Math.random() * 9000) - 3000);
-  })
-  
-  data.datasets.map(e => e.data.splice(0, 1));
-  
-  data.datasets.map((e, i) => {
-  	e.data.push(newData[i]);
-  })
-  
-  data.labels.push(zero);
-  data.labels.splice(0, 1);
-  // add 1 to each new count after 20
-  zero++;
-  //data.update();
+    const newData = data.datasets.map(e => {
+        return Math.floor((Math.random() * 9000) - 3000);
+    })
+
+    data.datasets.map(e => e.data.splice(0, 1));
+
+    data.datasets.map((e, i) => {
+        e.data.push(newData[i]);
+    })
+
+    data.labels.push(zero);
+    data.labels.splice(0, 1);
+    // add 1 to each new count after 20
+    zero++;
+    //data.update();
 }
 
 // time between updates
-setInterval(function() {
-  adddata();
+setInterval(function () {
+    adddata();
 }, 1000);
 //===============================================================================================================================================
 //===============================================================================================================================================  
@@ -133,11 +133,11 @@ class Home extends Component {
             backgroundColor: "green",
             fill: false,
             lineTension: 0
-          }
-          // You add the newly created dataset to the list of `data`
-          data.datasets.push(newDataset);
-          // You update the chart to take into account the new dataset
-          // data.update();
+        }
+        // You add the newly created dataset to the list of `data`
+        data.datasets.push(newDataset);
+        // You update the chart to take into account the new dataset
+        // data.update();
     };
 
     render() {
