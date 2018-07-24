@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Home.css";
 import { Helmet } from "react-helmet";
 import Page from "../../components/MaterializePage";
-//import MyChart from "../../components/MyChart/myChart";
 import TickerList from "../../components/TickerList";
 import Notes from "../../components/Notes";
 import { Line } from "react-chartjs-2"
@@ -145,10 +144,10 @@ class Home extends Component {
             <Page
                 style={
                     {
-                        "backgroundColor": "#9b179b",//<------ THEME COLOR
+                        "backgroundColor": "#330066",//<------ THEME COLOR
                     }
                 }
-                text="P3"//<---- LOGO TEXT
+                text={<img class="stockLogo" src="Stock_Run_Logo.jpg"></img>}//<---- LOGO
                 promptLogin={true}
                 username={this.props.username}
             >
