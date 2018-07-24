@@ -32,7 +32,6 @@ class Notes extends Component {
 
 
     render() {
-        // let displayNotes = this.state.notes.map((text, i) => {
         let displayNotes = this.props.notes.map((text, i) => {
                 return (
                 <CollectionItem key={"Note-"+i}>

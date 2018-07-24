@@ -1,3 +1,7 @@
+.Footer{
+    position:fixed;
+}
+
 .MyFooter{
     position: static;
     bottom:0;

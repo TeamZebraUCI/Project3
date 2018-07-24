@@ -135,8 +135,9 @@ class App extends Component{
                   username={this.state.username}
                   tickerList = {this.state.tickerList}
                   handleSearchTicker = {this.searchTicker}
-                  handleAddNote = {this.addNote}
+
                   notes = {this.state.notes}
+                  handleAddNote = {this.addNote}
                   handleDeleteNote = {this.deleteNote}
                 />} />
             <Route
