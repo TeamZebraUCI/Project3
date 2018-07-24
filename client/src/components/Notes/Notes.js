@@ -32,7 +32,7 @@ class Notes extends Component {
 
 
     render() {
-        let displayNotes = this.props.notes.map((text, i) => {
+        let displayNotes = this.props.notes.slice(0).reverse().map((text, i) => {
                 return (
                 <CollectionItem key={"Note-"+i}>
                     <Card className='noteCard'>

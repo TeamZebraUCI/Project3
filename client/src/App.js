@@ -114,9 +114,9 @@ class App extends Component{
     sessionStorage.setItem("state",JSON.stringify(this.state));
   }
 
-  deleteNote = (noteIndex)=>{
+  deleteNote = (revIndex)=>{
     let newNotes = this.state.notes;
-    newNotes.splice(noteIndex,1);
+    newNotes.splice(((this.state.notes.length-1) - revIndex),1);
     this.setState({notes:newNotes});
     sessionStorage.setItem("state",JSON.stringify(this.state));
   }
