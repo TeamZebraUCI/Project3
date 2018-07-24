@@ -1,51 +1,126 @@
 import React, { Component } from 'react';
-import {Collection, CollectionItem, Button, Icon, Card, Input} from "react-materialize";
+import {Collection, CollectionItem, Button, Icon, Card, Input,Dropdown,NavItem} from "react-materialize";
 import './Notes.css';
 
 class Notes extends Component {
     state = {
-        currentNote: ""
+        currentNote: "",
+        editedNote:"",
+        editedNoteIndex:null,
+        editingNote:false
     };
 
-    onInputChange = (event) => {
+    onNewNoteInputChange = (event) => {
         this.setState({ currentNote: event.target.value });
     }
-
-    // onClick = e => {
-    //     e.preventDefault();
-    //     let newNote = this.state.notes.slice();
-    //     newNote.push(this.state.currentNote);
-
-    //     this.setState({ notes: newNote, currentNote: '' });
-    // }
-
-    // deleteNote = i => {
-    //     let removeNote = this.state.notes.slice();
-    //     removeNote.splice(i , 1);
-    //     this.setState({ notes: removeNote })
-    // }
     
+    onEditNoteInputChange = (event) => {
+        this.setState({ editedNote: event.target.value });
+    }
+
     addNoteBtn = ()=>{
         this.props.handleAddNote(this.state.currentNote)
         this.setState({currentNote:""});
     };
 
+    editNoteBtn = (note,i)=>{
+        console.log("EDIT BTN CLICKED")
+        console.log(this.state)
+        if(!this.state.editingNote){
+            console.log("EDITING A NOTE")
+            const noteIndex = ((this.props.notes.length-1) - i);
+            console.log(note);
+            console.log(i);
+            this.props.handleEditNote(noteIndex);
+            this.setState({
+                editedNoteIndex:noteIndex,
+                editedNote:note.text,
+                editingNote:true
+            })
+            console.log(this.state);
+        }else{
+            console.log("Note already being edited");
+        }
+        console.log("FINISHED");
+    };
+
+    saveEditBtn = (note,i)=>{
+        this.setState({
+            editedNoteIndex:null,
+            editedNote:"",
+            editingNote:false
+        });
+        const noteIndex = ((this.props.notes.length-1) - i);
+
+        this.props.handleUpdateNote(note,noteIndex);
+    };
+
+    cancleEditBtn = (note,i)=>{
+        this.setState({
+            editedNoteIndex:null,
+            editedNote:"",
+            editingNote:false
+        });
+        const noteIndex = ((this.props.notes.length-1) - i);
+        this.props.handleUpdateNote(note,noteIndex);
+    }
+
+
+    makeCard = (note,i)=>{
+        if (note.beingEdited){
+            return(
+                <Card className='noteCard'>
+                <div className="noteContent row">
+                    <div className="noteText col s10">
+                    <Input
+                        className="noteInput"
+                        type="textarea"
+                        maxlength="200"
+                        value={this.state.editedNote}
+                        onChange={this.onEditNoteInputChange}>
+                    </Input>
+                    </div>
+                    <div className="noteButons col s2">
+                        <Button className="btn-floating waves-effect waves-light" 
+                            onClick={() => this.saveEditBtn(note,i)}>
+                            <Icon>save</Icon>
+                        </Button>
+                        <Button className="btn-floating waves-effect waves-light" 
+                            onClick={() => this.cancleEditBtn(note,i)}>
+                            <Icon>clear</Icon>
+                        </Button>
+                    </div>
+                </div>
+            </Card>
+            );
+        }
+        return (
+            <Card className='noteCard'>
+                <div className="noteContent row">
+                    <div className="noteText col s10">
+                        {note.text}
+                    </div>
+                    <div className="noteButons col s2">
+                        <Button className="btn-floating waves-effect waves-light" 
+                            onClick={() => this.props.handleDeleteNote(((this.props.notes.length-1) - i))}>
+                            <Icon>delete</Icon>
+                        </Button>
+                        <Button className="btn-floating waves-effect waves-light" 
+                            onClick={() => this.editNoteBtn(note,i)}>
+                            <Icon>edit</Icon>
+                        </Button>
+                    </div>
+                </div>
+            </Card>
+        );
+    }
 
     render() {
-        let displayNotes = this.props.notes.slice(0).reverse().map((text, i) => {
-                return (
-                <CollectionItem key={"Note-"+i}>
-                    <Card className='noteCard'>
-                        <div className="noteContent row">
-                            <div className="noteText col s10">
-                                {text}
-                            </div>
-                            <div className="noteButons col s2">
-                                <Button className="btn-floating waves-effect waves-light" onClick={() => this.props.handleDeleteNote(i)}><Icon>delete</Icon></Button>
-                            </div>
-                        </div>
-                    </Card>
-                </CollectionItem>
+        let displayNotes = this.props.notes.slice(0).reverse().map((noteObj, i) => {
+            return (
+            <CollectionItem key={"Note-"+i}>
+                {this.makeCard(noteObj,i)}
+            </CollectionItem>
             );
         });
 
@@ -59,7 +134,7 @@ class Notes extends Component {
                         maxlength="200"
                         placeholder='Create a new note!'
                         value={this.state.currentNote}
-                        onChange={this.onInputChange}
+                        onChange={this.onNewNoteInputChange}
                     />
                 </div>
                 <div className=" addNoteBtnDiv col s2">
