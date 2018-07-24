@@ -19,8 +19,12 @@ class Notes extends Component {
     }
 
     addNoteBtn = ()=>{
-        this.props.handleAddNote(this.state.currentNote)
-        this.setState({currentNote:""});
+        if (this.state.currentNote.length > 10){// <-------------- min char limit for a note
+            this.props.handleAddNote(this.state.currentNote)
+            this.setState({currentNote:""});
+        }else{
+            console.log("NOTE IS TOO SHORT");
+        }
     };
 
     editNoteBtn = (note,i)=>{
