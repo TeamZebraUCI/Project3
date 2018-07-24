@@ -124,11 +124,11 @@ class App extends Component{
     sessionStorage.setItem("state",JSON.stringify(this.state));
   }
 
-  updateNote = (note,noteIndex)=>{
+  updateNote = (noteText,noteIndex)=>{
     let newNotes = this.state.notes;
-    newNotes[noteIndex].text = note.text;
+    newNotes[noteIndex].text = noteText;
     newNotes[noteIndex].beingEdited = false;
-    this.setState({notes:newNotes});    
+    this.setState({notes:newNotes});
     sessionStorage.setItem("state",JSON.stringify(this.state));
   }
 
@@ -136,6 +136,12 @@ class App extends Component{
     let newNotes = this.state.notes;
     newNotes[noteIndex].beingEdited = true;
     this.setState({notes:newNotes});    
+  }
+
+  cancleEditNote = (noteIndex)=>{
+    let newNotes = this.state.notes;
+    newNotes[noteIndex].beingEdited = false;
+    this.setState({notes:newNotes});
   }
 
   
@@ -158,6 +164,7 @@ class App extends Component{
                   handleDeleteNote = {this.deleteNote}
                   handleEditNote = {this.editNote}
                   handleUpdateNote = {this.updateNote}
+                  handleCancleEditNote = {this.cancleEditNote}
                 />} />
             <Route
               exact

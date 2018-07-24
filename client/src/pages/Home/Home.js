@@ -191,6 +191,7 @@ class Home extends Component {
                                 handleDeleteNote = {this.props.handleDeleteNote}
                                 handleEditNote = {this.props.handleEditNote}
                                 handleUpdateNote = {this.props.handleUpdateNote}
+                                handleCancleEditNote = {this.props.handleCancleEditNote}
                             />
                         </div>
                     </div>

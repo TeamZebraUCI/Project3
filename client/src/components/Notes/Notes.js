@@ -24,35 +24,28 @@ class Notes extends Component {
     };
 
     editNoteBtn = (note,i)=>{
-        console.log("EDIT BTN CLICKED")
-        console.log(this.state)
         if(!this.state.editingNote){
-            console.log("EDITING A NOTE")
             const noteIndex = ((this.props.notes.length-1) - i);
-            console.log(note);
-            console.log(i);
             this.props.handleEditNote(noteIndex);
             this.setState({
                 editedNoteIndex:noteIndex,
                 editedNote:note.text,
                 editingNote:true
             })
-            console.log(this.state);
         }else{
             console.log("Note already being edited");
         }
-        console.log("FINISHED");
     };
 
     saveEditBtn = (note,i)=>{
+        console.log("SAVING EDITS");
+        const noteIndex = ((this.props.notes.length-1) - i);
+        this.props.handleUpdateNote(this.state.editedNote,noteIndex);
         this.setState({
             editedNoteIndex:null,
             editedNote:"",
             editingNote:false
         });
-        const noteIndex = ((this.props.notes.length-1) - i);
-
-        this.props.handleUpdateNote(note,noteIndex);
     };
 
     cancleEditBtn = (note,i)=>{
@@ -62,7 +55,7 @@ class Notes extends Component {
             editingNote:false
         });
         const noteIndex = ((this.props.notes.length-1) - i);
-        this.props.handleUpdateNote(note,noteIndex);
+        this.props.handleCancleEditNote(noteIndex);
     }
 
 
