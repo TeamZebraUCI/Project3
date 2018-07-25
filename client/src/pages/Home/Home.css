@@ -45,3 +45,9 @@
     margin-top: 0;
     margin-bottom: 20px;
 }
+
+.stockLogo {
+    padding-top: 4px;
+    width: 160px;
+    height: auto;
+}

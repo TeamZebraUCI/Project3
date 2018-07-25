@@ -13,10 +13,11 @@ class Login extends Component{
             <Page
                 style={
                     {
-                    "backgroundColor":"#9b179b",//<------ THEME COLOR
+                    "backgroundColor":"#330066",//<------ THEME COLOR
                     }
                 }
-                text="P3"//<---- LOGO TEXT
+                text={<img class="stockLogo" src="Stock_Run_Logo.jpg"></img>}//<---- LOGO
+                promptLogin={true}
                 promptLogin = {false}
             >
                 <Helmet>

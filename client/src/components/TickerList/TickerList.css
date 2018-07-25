@@ -1,3 +1,7 @@
 .TickerList .collection-header{
     list-style: none;
 }
+
+.searchButton{
+    background-color: #4CAF50;
+}
