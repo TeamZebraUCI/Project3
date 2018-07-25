@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet";
 import Page from "../../components/MaterializePage";
 import TickerList from "../../components/TickerList";
 import Notes from "../../components/Notes";
+import SaveButton from "../../components/SaveButton";
+
 import { Line } from "react-chartjs-2"
 
 //===============================================================================================================================================
@@ -117,11 +119,18 @@ class Home extends Component {
         console.log(tickerObj);
     };
 
+    showSaveButton = ()=>{
+        if(this.props.username){
+            return <SaveButton/>;
+        }
+        return;
+    };
+
     // remove dataset button
     removeBtn = e => {
         data.datasets.splice(0, 1);
         //data.update();
-    }
+    };
 
     // add apple dataset
     appleBtn = e => {
@@ -154,28 +163,38 @@ class Home extends Component {
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
-
                 <div className="Home row">
                     <div className="col s3 mycol1">
                         <TickerList
+                            tickerList = {this.props.tickerList}
                             selectHandler={this.selectTicker}
-                        /></div>
+                            handleSearchTicker = {this.props.handleSearchTicker}
+                            />
+                        {this.showSaveButton()}
+                    </div>
                     <div className="col s9 mycol2">
-                        <div className="wrapper">
-                            {/* THIS IS THE CHART */}
+                        <div className="row ChartDiv">
                             <Line data={data} />
+                            <button className="chartBtn" id="empty" onClick={this.removeBtn}>
+                                Remove Dataset
+                            </button>
+                            <button className="chartBtn" id="apple" onClick={this.appleBtn}>
+                                Apple
+                            </button>
                         </div>
-                        <button className="chartBtn" id="empty" onClick={this.removeBtn}>
-                            Remove Dataset
-                        </button>
-                        <button className="chartBtn" id="apple" onClick={this.appleBtn}>
-                            Apple
-                        </button>
-                        {/* <div className="row NotesDiv">NotesComponent</div>
-                        <div className="row ChartDiv">ChartComponent</div> */}
-                        <div className="row NotesDiv"><Notes /></div>
+                        <div className="row NotesDiv">
+                            <Notes
+                                notes = {this.props.notes}
+                                handleAddNote={this.props.handleAddNote}
+                                handleDeleteNote = {this.props.handleDeleteNote}
+                                handleEditNote = {this.props.handleEditNote}
+                                handleUpdateNote = {this.props.handleUpdateNote}
+                                handleCancleEditNote = {this.props.handleCancleEditNote}
+                            />
+                        </div>
                     </div>
                 </div>
+                
             </Page>
         );
     }

@@ -45,7 +45,7 @@ export default class Login extends Component {
       <div className="Login">
         <form>
           <h1 className="title">Log Out: </h1>
-          <button className="submitBtn" onClick={this.handleFormSubmit}>Log Out</button>
+          <button className="submitBtn" onClick={this.props.logOut}>Log Out</button>
         </form>
       </div>
       :
