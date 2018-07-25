@@ -2,6 +2,21 @@
     list-style: none;
 }
 
-.searchButton{
-    background-color: #4CAF50;
+.TickerList div{
+    text-align: center;
+}
+
+.TickerList .collection-item{
+    margin: 0%;
+    padding: 0%;
+}
+
+.TickerList .tickerLogo{
+    width: 60px;
+    height: 60px;
+}
+
+.TickerList .tickerlogoNameDiv{
+    display: inline-block;
+    width: fit-content;
 }

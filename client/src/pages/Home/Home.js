@@ -167,7 +167,7 @@ class Home extends Component {
                     <div className="col s3 mycol1">
                         <TickerList
                             tickerList = {this.props.tickerList}
-                            selectHandler={this.selectTicker}
+                            handleSelectTicker = {this.props.handleSelectTicker}
                             handleSearchTicker = {this.props.handleSearchTicker}
                             />
                         {this.showSaveButton()}

@@ -30,6 +30,7 @@ class App extends Component{
         loggedIn:false,
         username:'',
         tickerList:[],
+        selectedTickers:[],
         notes:[]
       }
     }
@@ -107,6 +108,24 @@ class App extends Component{
       }
   };
 
+  selectTicker = (tickerObj)=>{
+    for (let i=0; i<this.state.selectedTickers.length; i++){
+      if (tickerObj.ticker == this.state.selectedTickers[i].ticker){
+        return;
+      }
+    }
+    let newSelectedTickers = this.state.selectedTickers;
+    const selectedTicker = tickerObj;
+    newSelectedTickers.push(selectedTicker);
+    this.setState({selectedTickers:newSelectedTickers});
+    sessionStorage.setItem("state",JSON.stringify(this.state));
+    console.log("Ticker SELECTED");
+}
+
+
+
+
+
   addNote = (noteText)=>{
     let newNotes = this.state.notes;
     newNotes.push({
@@ -158,6 +177,7 @@ class App extends Component{
 
                   tickerList = {this.state.tickerList}
                   handleSearchTicker = {this.searchTicker}
+                  handleSelectTicker = {this.selectTicker}
 
                   notes = {this.state.notes}
                   handleAddNote = {this.addNote}
