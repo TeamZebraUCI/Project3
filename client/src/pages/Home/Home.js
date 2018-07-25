@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Home.css";
 import { Helmet } from "react-helmet";
 import Page from "../../components/MaterializePage";
-//import MyChart from "../../components/MyChart/myChart";
 import TickerList from "../../components/TickerList";
 import Notes from "../../components/Notes";
 import SaveButton from "../../components/SaveButton";
@@ -90,26 +89,26 @@ function changeData(arr) {
 var zero = 20;
 // update all active datasets
 function adddata() {
-	const newData = data.datasets.map(e => {
-  	return Math.floor((Math.random() * 9000) - 3000);
-  })
-  
-  data.datasets.map(e => e.data.splice(0, 1));
-  
-  data.datasets.map((e, i) => {
-  	e.data.push(newData[i]);
-  })
-  
-  data.labels.push(zero);
-  data.labels.splice(0, 1);
-  // add 1 to each new count after 20
-  zero++;
-  //data.update();
+    const newData = data.datasets.map(e => {
+        return Math.floor((Math.random() * 9000) - 3000);
+    })
+
+    data.datasets.map(e => e.data.splice(0, 1));
+
+    data.datasets.map((e, i) => {
+        e.data.push(newData[i]);
+    })
+
+    data.labels.push(zero);
+    data.labels.splice(0, 1);
+    // add 1 to each new count after 20
+    zero++;
+    //data.update();
 }
 
 // time between updates
-setInterval(function() {
-  adddata();
+setInterval(function () {
+    adddata();
 }, 1000);
 //===============================================================================================================================================
 //===============================================================================================================================================  
@@ -142,11 +141,11 @@ class Home extends Component {
             backgroundColor: "green",
             fill: false,
             lineTension: 0
-          }
-          // You add the newly created dataset to the list of `data`
-          data.datasets.push(newDataset);
-          // You update the chart to take into account the new dataset
-          // data.update();
+        }
+        // You add the newly created dataset to the list of `data`
+        data.datasets.push(newDataset);
+        // You update the chart to take into account the new dataset
+        // data.update();
     };
 
     render() {
@@ -154,11 +153,10 @@ class Home extends Component {
             <Page
                 style={
                     {
-                        "backgroundColor": "#9b179b",//<------ THEME COLOR
+                        "backgroundColor": "#330066",//<------ THEME COLOR
                     }
                 }
-
-                text="P3"//<---- LOGO TEXT
+                text={<img class="stockLogo" src="Stock_Run_Logo.jpg"></img>}//<---- LOGO
                 promptLogin={true}
                 username={this.props.username}
             >
