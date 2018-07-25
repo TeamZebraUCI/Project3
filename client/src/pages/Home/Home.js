@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Home.css";
 import { Helmet } from "react-helmet";
 import Page from "../../components/MaterializePage";
-//import MyChart from "../../components/MyChart/myChart";
 import TickerList from "../../components/TickerList";
 import Notes from "../../components/Notes";
 import { Line } from "react-chartjs-2"
@@ -61,13 +60,16 @@ function addData() {
     // add 1 to each new count after 20
     count++;
     // display new changes to the chart
-    //myLineChart.data.update();
+    // myLineChart.data.update();
+    return addData;
 }
 
 // time between updates
 setInterval(function () {
     addData();
+    console.log("in the loop");
 }, 1000);
+
 
 var option = {
     options: {
@@ -135,6 +137,15 @@ class Home extends Component {
         options: option
     }
 
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {};
+
+    //     setInterval(() => {
+    //         this.setState(1000)
+    //     })
+    // }
+
     // functionName = () => {
     //     someOtherName = {
     //         // prepare info
@@ -156,18 +167,56 @@ class Home extends Component {
 
     // add apple dataset
     appleBtn = e => {
-        var newDataset = {
-            data: [3500, -432, -777, 5200, -1234, 5400, 4321],
-            label: "Apple",
-            borderColor: "green",
-            backgroundColor: "green",
-            fill: false,
-            lineTension: 0
-        }
-        // You add the newly created dataset to the list of `data`
-        data.datasets.push(newDataset);
-        // You update the chart to take into account the new dataset
-        // data.update();
+        // setState will take advantage of previous state (prevState) to make a new one
+        this.setState((prevState) => {
+            // we had a new set of data to "datasets" found in "prevState" because we cannot modify state directly (this.state)
+            prevState.data.datasets.push(
+                {
+                    data: [3500, -432, -777, 5200, -1234, 5400, 4321, 1234, 4322, -2000, -200, 5321, 2134, 100, 45, -54, -700, 500, 1456, -2900],
+                    label: "Apple",
+                    borderColor: "green",
+                    backgroundColor: "green",
+                    fill: false,
+                    lineTension: 0
+                }
+            );
+            // this prepares a new object to set as state named "newState"
+            // we have to keep the original keys of the previous state so we don't lose them
+            // in this case, they are "data" and "options"
+            let newState = {
+                // Object.assign creates a new object based off a target and another object with data
+                // new keys can either replace or add to the target
+                // here we are replacing "datasets"
+                data: Object.assign({
+                    datasets: prevState.data.datasets
+                    // the target object is prevState
+                }, prevState.data),
+                // here we keep options set to prevState.option because we wanna use them gain
+                options: prevState.option
+            };
+            // finally here we have to return newState (which is an object)
+            // returning this object works to specifically set a new state
+            // for the React component
+            return newState;
+        });
+        // this.setState((prevState) => {
+        //     prevState.data.datasets.push(
+        //         {
+        //             data: [3500, -432, -777, 5200, -1234, 5400, 4321, 1234, 4322, -2000, -200, 5321, 2134, 100, 45, -54, -700, 500, 1456, -2900],
+        //             label: "Apple",
+        //             borderColor: "green",
+        //             backgroundColor: "green",
+        //             fill: false,
+        //             lineTension: 0
+        //         }
+        //     );
+        //     return {
+        //         data: Object.assign({
+        //             datasets: prevState.data.datasets
+        //         }, prevState.data),
+        //         options: prevState.option
+        //     };
+        // });
     };
 
     render() {
