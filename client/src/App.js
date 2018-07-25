@@ -119,8 +119,14 @@ class App extends Component{
     newSelectedTickers.push(selectedTicker);
     this.setState({selectedTickers:newSelectedTickers});
     sessionStorage.setItem("state",JSON.stringify(this.state));
-    console.log("Ticker SELECTED");
 }
+
+  removeChip = (tickerIndex)=>{
+    let newSelectedTickers = this.state.selectedTickers;
+    newSelectedTickers.splice(tickerIndex,1);
+    this.setState({selectedTickers:newSelectedTickers});
+    sessionStorage.setItem("state",JSON.stringify(this.state));
+  }
 
 
 
@@ -176,8 +182,11 @@ class App extends Component{
                   username={this.state.username}
 
                   tickerList = {this.state.tickerList}
+                  selectedTickers = {this.state.selectedTickers}
                   handleSearchTicker = {this.searchTicker}
                   handleSelectTicker = {this.selectTicker}
+
+                  handleRemoveChip = {this.removeChip}
 
                   notes = {this.state.notes}
                   handleAddNote = {this.addNote}
