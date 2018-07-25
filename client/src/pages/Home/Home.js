@@ -61,7 +61,7 @@ function addData() {
     // add 1 to each new count after 20
     count++;
     // display new changes to the chart
-    myLineChart.data.update();
+    //myLineChart.data.update();
 }
 
 // time between updates
@@ -135,14 +135,14 @@ class Home extends Component {
         options: option
     }
 
-    functionName = () => {
-        someOtherName = {
-            // prepare info
-            // add data
-            // changes state
-            // set state
-        }
-    }
+    // functionName = () => {
+    //     someOtherName = {
+    //         // prepare info
+    //         // add data
+    //         // changes state
+    //         // set state
+    //     }
+    // }
 
     selectTicker = (tickerObj) => {
         console.log(tickerObj);
