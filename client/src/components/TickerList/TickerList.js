@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import {Collection, CollectionItem, Button, Icon,Chip} from "react-materialize";
-import './TickerList.css';
-import Input from "../../../node_modules/react-materialize/lib/Input";
+import {Collection, CollectionItem, Button, Icon,Input} from "react-materialize";
+import './TickerList.css';  
 
 class TickerList extends Component {
     state={
@@ -18,15 +17,15 @@ class TickerList extends Component {
     };
 
     render(){
-
-        // let displayTickers = this.state.Tickers.map((tickerObj)=>{
         let displayTickers = this.props.tickerList.map((tickerObj)=>{
             return (
-                <CollectionItem key={tickerObj.ticker} href="#" onClick={()=>{this.props.selectHandler(tickerObj)}}>
-                    <Chip>
-                        <img src={tickerObj.logoURL}/>
+                <CollectionItem className="row" key={tickerObj.ticker} href="#" onClick={()=>{this.props.handleSelectTicker(tickerObj)}}>
+                    <div className="tickerLogoDiv">
+                        <img className="tickerLogo" src={tickerObj.logoURL}/>
+                    </div>
+                    <div className="tickerNameDiv">
                         {tickerObj.ticker}
-                    </Chip>
+                    </div>
                 </CollectionItem>
             );
         });
