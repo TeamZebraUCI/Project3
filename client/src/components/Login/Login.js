@@ -71,7 +71,7 @@ export default class Login extends Component {
                 type="password"
               />
               <button className="submitBtn" type="button" onClick={(e) => this.props.logIn(e, this.state.username, this.state.password)}>Log In</button>
-              <p onClick={this.showSignUp}>Sign Up</p>
+              <p className="signUpToggleButton" onClick={this.showSignUp}>Or Sign Up</p>
             </div>
           }
           { this.state.showSignUp &&
@@ -94,7 +94,7 @@ export default class Login extends Component {
                 type="password"
               />
               <button className="submitBtn" type="button" onClick={(e) => this.props.signUp(e, this.state.username, this.state.password)}>Sign Up</button>
-              <p onClick={this.showLogin}>Login</p>
+              <p className="signUpToggleButton" onClick={this.showLogin}>Or Login</p>
             </div>
           }
         </form>

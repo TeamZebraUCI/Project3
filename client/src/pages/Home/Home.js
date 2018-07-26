@@ -160,7 +160,7 @@ class Home extends Component {
                 }
                 text={<img class="stockLogo" src="Stock_Run_Logo.jpg"></img>}//<---- LOGO
                 promptLogin={true}
-                username={this.props.username}
+                username={this.props.username}//creating variable inside of home.js called username which is equal to the username thats on app.js
             >
                 <Helmet>
                     <title>Home</title>

@@ -19,6 +19,8 @@ class Login extends Component{
                 text={<img class="stockLogo" src="Stock_Run_Logo.jpg"></img>}//<---- LOGO
                 promptLogin={true}
                 promptLogin = {false}
+
+                username={this.props.username}
             >
                 <Helmet>
                     <title>Login</title>
