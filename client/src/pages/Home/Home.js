@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import "./Home.css";
 import { Helmet } from "react-helmet";
-
 import Page from "../../components/MaterializePage";
 import TickerList from "../../components/TickerList";
-import TickerChips from "../../components/TickerChips";
 import Notes from "../../components/Notes";
 import SaveButton from "../../components/SaveButton";
 
 import { Line } from "react-chartjs-2"
+
+// new datajs plug in dummy data, then make a function that whenever teh tickers are clicked they are 
+// added to the bottom of the cart, then THOSE buttons active the chart info
+// when you make the API call you want to keep the interval going
+// xaxis y axis dynamic, dont store it
+// one function that gets the api, creates the lines, setTimeOut
 
 //===============================================================================================================================================
 //===============================================================================================================================================
@@ -135,12 +139,15 @@ let myLineChart = {
 //===============================================================================================================================================  
 
 class Home extends Component {
-
+    // empty array of companies
+    // whenever the ticker is clicked set state and push the speicific company clicked
+    // push ticker to state then the button resfreshes state
     state = {
         data: data,
         options: option
     }
 
+    // timeout?
     // constructor(props) {
     //     super(props);
     //     this.state = {};
@@ -159,6 +166,9 @@ class Home extends Component {
     //     }
     // }
 
+
+    // create a function with a setInterval to call the API every ___ seconds
+    // timer function, every active stock runs the timer every second
     addData = () => {
         let count = 20;
         const newData = myLineChart.data.datasets.map(e => {
@@ -202,9 +212,11 @@ class Home extends Component {
     // remove dataset button
     removeBtn = e => {
         data.datasets.splice(0, 1);
-        // data.datasets.update();
+        // bdata.datasets.update();
     };
 
+    // make a state that has a property of companies in an array
+    // minimize all functions to be plugged in dynamically, use appleBtn model
     // add apple dataset
     appleBtn = e => {
         // setState will take advantage of previous state (prevState) to make a new one
@@ -212,6 +224,7 @@ class Home extends Component {
             // we had a new set of data to "datasets" found in "prevState" because we cannot modify state directly (this.state)
             prevState.data.datasets.push(
                 {
+                    // plugin API data here dynamically, all new data passes through this button to be added to the chart
                     data: [3500, -432, -777, 5200, -1234, 5400, 4321, 1234, 4322, -2000, -200, 5321, 2134, 100, 45, -54, -700, 500, 1456, -2900],
                     label: "Apple",
                     borderColor: "green",
@@ -278,7 +291,7 @@ class Home extends Component {
                     <div className="col s3 mycol1">
                         <TickerList
                             tickerList = {this.props.tickerList}
-                            handleSelectTicker = {this.props.handleSelectTicker}
+                            selectHandler={this.selectTicker}
                             handleSearchTicker = {this.props.handleSearchTicker}
                             />
                         {this.showSaveButton()}
@@ -292,10 +305,6 @@ class Home extends Component {
                             <button className="chartBtn" id="apple" onClick={this.appleBtn}>
                                 Apple
                             </button>
-                            <TickerChips
-                                selectedTickers = {this.props.selectedTickers}
-                                handleRemoveChip = {this.props.handleRemoveChip}
-                            />
                         </div>
                         <div className="row NotesDiv">
                             <Notes
