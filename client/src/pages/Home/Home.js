@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "./Home.css";
 import { Helmet } from "react-helmet";
+
 import Page from "../../components/MaterializePage";
 import TickerList from "../../components/TickerList";
+import TickerChips from "../../components/TickerChips";
 import Notes from "../../components/Notes";
 import SaveButton from "../../components/SaveButton";
 
@@ -276,7 +278,7 @@ class Home extends Component {
                     <div className="col s3 mycol1">
                         <TickerList
                             tickerList = {this.props.tickerList}
-                            selectHandler={this.selectTicker}
+                            handleSelectTicker = {this.props.handleSelectTicker}
                             handleSearchTicker = {this.props.handleSearchTicker}
                             />
                         {this.showSaveButton()}
@@ -290,6 +292,10 @@ class Home extends Component {
                             <button className="chartBtn" id="apple" onClick={this.appleBtn}>
                                 Apple
                             </button>
+                            <TickerChips
+                                selectedTickers = {this.props.selectedTickers}
+                                handleRemoveChip = {this.props.handleRemoveChip}
+                            />
                         </div>
                         <div className="row NotesDiv">
                             <Notes
