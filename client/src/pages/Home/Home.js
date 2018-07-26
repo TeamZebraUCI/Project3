@@ -5,8 +5,10 @@ import Page from "../../components/MaterializePage";
 import TickerList from "../../components/TickerList";
 import Notes from "../../components/Notes";
 import SaveButton from "../../components/SaveButton";
+import TickeChips from "../../components/TickerChips";
 
 import { Line } from "react-chartjs-2"
+import TickerChips from "../../components/TickerChips";
 
 // new datajs plug in dummy data, then make a function that whenever teh tickers are clicked they are 
 // added to the bottom of the cart, then THOSE buttons active the chart info
@@ -291,7 +293,7 @@ class Home extends Component {
                     <div className="col s3 mycol1">
                         <TickerList
                             tickerList = {this.props.tickerList}
-                            selectHandler={this.selectTicker}
+                            handleSelectTicker={this.props.handleSelectTicker}
                             handleSearchTicker = {this.props.handleSearchTicker}
                             />
                         {this.showSaveButton()}
@@ -305,6 +307,10 @@ class Home extends Component {
                             <button className="chartBtn" id="apple" onClick={this.appleBtn}>
                                 Apple
                             </button>
+                            <TickerChips 
+                                selectedTickers = {this.props.selectedTickers}
+                                handleRemoveChip = {this.props.handleRemoveChip}
+                            />
                         </div>
                         <div className="row NotesDiv">
                             <Notes

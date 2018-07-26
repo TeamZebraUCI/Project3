@@ -19,7 +19,7 @@ class TickerList extends Component {
     render(){
         let displayTickers = this.props.tickerList.map((tickerObj)=>{
             return (
-                <CollectionItem className="row" key={tickerObj.ticker} href="#" onClick={()=>{this.props.handleSelectTicker(tickerObj)}}>
+                <CollectionItem className="row" key={tickerObj.ticker} onClick={()=>{this.props.handleSelectTicker(tickerObj)}}>
                     <div className="tickerLogoDiv">
                         <img className="tickerLogo" src={tickerObj.logoURL}/>
                     </div>
@@ -40,7 +40,9 @@ class TickerList extends Component {
                     onChange={this.onInputChange}
                     type="text" 
                 />
-                <Button onClick={this.searchBtn}><Icon left>search</Icon>Search</Button>
+                <Button onClick={this.searchBtn}>
+                    <Icon left>search</Icon>Search
+                </Button>
             </div>;
 
 
