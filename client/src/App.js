@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 //======================================import pages============================================================
 //import pages
-import HomePage from "./pages/Home";
+import HomePage from "./pages/Home";//const HomePage = require ("./pages/Home")
 import LoginPage from "./pages/Login";
 import NoMatchPage from "./pages/NoMatch";
 
@@ -28,7 +28,7 @@ class App extends Component{
     }else{
       this.state = {
         loggedIn:false,
-        username:'',
+        username:'',//username starts as empty string
         tickerList:[],
         selectedTickers:[],
         notes:[]
@@ -39,7 +39,7 @@ class App extends Component{
   signUp = (e, username, password) => {
     e.preventDefault();
     const user = {
-      "username": username,
+      "username": username,//this is only equal to the input from the user
       "password": password
     };
 
@@ -52,10 +52,26 @@ class App extends Component{
         username:res.data.username
       });
     });
-    sessionStorage.setItem("state",JSON.stringify(this.state));
+    // sessionStorage.setItem("state",JSON.stringify(this.state)); same again
+  }
+
+  componentWillMount(){
+    this.isLoggedIn()
+  }
+
+  //correct way to persist state, in a safe way to keep user information up to date Not through session storage.
+  isLoggedIn = ()=>{
+    axios.get("/api/user/isLoggedIn").then(res => {
+      console.log(res.data);
+      this.setState({
+        loggedIn:res.data.loggedIn,
+        username:res.data.username,
+      })
+    })
   }
  
   logIn = (e, username, password) => {
+    console.log("login Hit");
     e.preventDefault();
     const user = {
       "username": username,
@@ -66,16 +82,25 @@ class App extends Component{
       alert(res.data.message);
       this.setState({
         loggedIn:res.data.loggedIn,
-        username:res.data.username,
+        username:res.data.username,//username=res.data.username that is returned from login, app.js "state" is the only thing that posseses username
       });
-      
-      sessionStorage.setItem("state",JSON.stringify(this.state));
     })
   }
 
   logOut = (e) => {
     e.preventDefault();
     console.log(this.state);
+
+    axios.get("/api/user/logOut").then(res => {
+      console.log(res.data);
+      alert(res.data.message);
+      this.setState({
+        loggedIn:res.data.loggedIn,
+        username:res.data.username,//username=res.data.username that is returned from login, app.js "state" is the only thing that posseses username
+      });
+      
+      
+    })
 
     this.setState({
       loggedIn: false,
@@ -86,7 +111,7 @@ class App extends Component{
     console.log("saving the state below");
     console.log(this.state);
 
-    sessionStorage.setItem("state",JSON.stringify(this.state));
+    // sessionStorage.setItem("state",JSON.stringify(this.state)); do no need to save sesssion info
   }
 
   searchTicker = (query) => {
@@ -179,7 +204,9 @@ class App extends Component{
               path="/" 
               render={()=>
                 <HomePage 
-                  username={this.state.username}
+                  username={this.state.username}//home page doesn't have access to username yet, untill we pass it with this line of code
+
+                  logOut={this.logOut}
 
                   tickerList = {this.state.tickerList}
                   selectedTickers = {this.state.selectedTickers}

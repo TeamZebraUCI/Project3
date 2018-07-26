@@ -29,3 +29,16 @@
 .Login .submitBtn:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
+
+.Login .signUpToggleButton{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.Login .signUpToggleButton:hover{
+    cursor: pointer;
+    color:rgb(74, 78, 83);
+}
