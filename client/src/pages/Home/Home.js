@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet";
 import Page from "../../components/MaterializePage";
 import TickerList from "../../components/TickerList";
 import Notes from "../../components/Notes";
+import SaveButton from "../../components/SaveButton";
+
 import { Line } from "react-chartjs-2"
 
 //===============================================================================================================================================
@@ -41,34 +43,34 @@ function changeData(arr) {
 }
 
 // start counting at 20
-let count = 20;
+// let count = 20;
 // update all active datasets
-function addData() {
-    const newData = myLineChart.data.datasets.map(e => {
-        return Math.floor((Math.random() * 9000) - 3000);
-    })
+// function addData() {
+//     const newData = myLineChart.data.datasets.map(e => {
+//         return Math.floor((Math.random() * 9000) - 3000);
+//     })
 
-    myLineChart.data.datasets.map(e => e.data.splice(0, 1));
+//     myLineChart.data.datasets.map(e => e.data.splice(0, 1));
 
-    myLineChart.data.datasets.map((e, i) => {
-        e.data.push(newData[i]);
-    })
+//     myLineChart.data.datasets.map((e, i) => {
+//         e.data.push(newData[i]);
+//     })
 
-    myLineChart.data.labels.push(count);
-    myLineChart.data.labels.splice(0, 1);
+//     myLineChart.data.labels.push(count);
+//     myLineChart.data.labels.splice(0, 1);
 
-    // add 1 to each new count after 20
-    count++;
-    // display new changes to the chart
-    // myLineChart.data.update();
-    return addData;
-}
+//     // add 1 to each new count after 20
+//     count++;
+//     // display new changes to the chart
+//     // myLineChart.data.update();
+//     return addData;
+// }
 
 // time between updates
-setInterval(function () {
-    addData();
-    console.log("in the loop");
-}, 1000);
+// setInterval(function () {
+//     addData();
+//     console.log("in the loop");
+// }, 1000);
 
 
 var option = {
@@ -155,15 +157,51 @@ class Home extends Component {
     //     }
     // }
 
+    addData = () => {
+        let count = 20;
+        const newData = myLineChart.data.datasets.map(e => {
+            return Math.floor((Math.random() * 9000) - 3000);
+        })
+    
+        myLineChart.data.datasets.map(e => e.data.splice(0, 1));
+    
+        myLineChart.data.datasets.map((e, i) => {
+            e.data.push(newData[i]);
+        })
+    
+        myLineChart.data.labels.push(count);
+        myLineChart.data.labels.splice(0, 1);
+    
+        // add 1 to each new count after 20
+        count++;
+        // display new changes to the chart
+        myLineChart.data.update();
+    }
+    
+    // setInterval = () => {
+    //     addData();
+    //     console.log("in the loop");
+    //     1000;
+    // }
+
+
+
     selectTicker = (tickerObj) => {
         console.log(tickerObj);
+    };
+
+    showSaveButton = ()=>{
+        if(this.props.username){
+            return <SaveButton/>;
+        }
+        return;
     };
 
     // remove dataset button
     removeBtn = e => {
         data.datasets.splice(0, 1);
-        //data.update();
-    }
+        // data.datasets.update();
+    };
 
     // add apple dataset
     appleBtn = e => {
@@ -224,38 +262,48 @@ class Home extends Component {
             <Page
                 style={
                     {
-                        "backgroundColor": "#9b179b",//<------ THEME COLOR
+                        "backgroundColor": "#330066",//<------ THEME COLOR
                     }
                 }
-                text="P3"//<---- LOGO TEXT
+                text={<img class="stockLogo" src="Stock_Run_Logo.jpg"></img>}//<---- LOGO
                 promptLogin={true}
                 username={this.props.username}
             >
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
-
                 <div className="Home row">
                     <div className="col s3 mycol1">
                         <TickerList
+                            tickerList = {this.props.tickerList}
                             selectHandler={this.selectTicker}
-                        /></div>
+                            handleSearchTicker = {this.props.handleSearchTicker}
+                            />
+                        {this.showSaveButton()}
+                    </div>
                     <div className="col s9 mycol2">
-                        <div className="wrapper">
-                            {/* THIS IS THE CHART */}
-                            <Line data={this.state.data} id="chartWrapper" />
+                        <div className="row ChartDiv">
+                            <Line data={data} />
+                            <button className="chartBtn" id="empty" onClick={this.removeBtn}>
+                                Remove Dataset
+                            </button>
+                            <button className="chartBtn" id="apple" onClick={this.appleBtn}>
+                                Apple
+                            </button>
                         </div>
-                        <button className="chartBtn" id="empty" onClick={this.removeBtn}>
-                            Remove Dataset
-                        </button>
-                        <button className="chartBtn" id="apple" onClick={this.appleBtn}>
-                            Apple
-                        </button>
-                        {/* <div className="row NotesDiv">NotesComponent</div>
-                        <div className="row ChartDiv">ChartComponent</div> */}
-                        <div className="row NotesDiv"><Notes /></div>
+                        <div className="row NotesDiv">
+                            <Notes
+                                notes = {this.props.notes}
+                                handleAddNote={this.props.handleAddNote}
+                                handleDeleteNote = {this.props.handleDeleteNote}
+                                handleEditNote = {this.props.handleEditNote}
+                                handleUpdateNote = {this.props.handleUpdateNote}
+                                handleCancleEditNote = {this.props.handleCancleEditNote}
+                            />
+                        </div>
                     </div>
                 </div>
+                
             </Page>
         );
     }

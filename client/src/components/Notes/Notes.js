@@ -1,49 +1,123 @@
-import React, { Component } from 'react'
-import './Notes.css'
-import {Collection, CollectionItem, Button, Icon, Card, Input} from "react-materialize";
+import React, { Component } from 'react';
+import {Collection, CollectionItem, Button, Icon, Card, Input,Dropdown,NavItem} from "react-materialize";
+import './Notes.css';
 
-export default class Notes extends Component {
-    constructor() {
-        super();
-        this.state = {
-            notes: [],
-            currentNote: ""
-        };
+class Notes extends Component {
+    state = {
+        currentNote: "",
+        editedNote:"",
+        editedNoteIndex:null,
+        editingNote:false
+    };
+
+    onNewNoteInputChange = (event) => {
+        this.setState({ currentNote: event.target.value });
+    }
+    
+    onEditNoteInputChange = (event) => {
+        this.setState({ editedNote: event.target.value });
     }
 
-    onInputChange = (e) => {
-        this.setState({ currentNote: e.target.value });
+    addNoteBtn = ()=>{
+        if (this.state.currentNote.length > 10){// <-------------- min char limit for a note
+            this.props.handleAddNote(this.state.currentNote)
+            this.setState({currentNote:""});
+        }else{
+            console.log("NOTE IS TOO SHORT");
+        }
+    };
+
+    editNoteBtn = (note,i)=>{
+        if(!this.state.editingNote){
+            const noteIndex = ((this.props.notes.length-1) - i);
+            this.props.handleEditNote(noteIndex);
+            this.setState({
+                editedNoteIndex:noteIndex,
+                editedNote:note.text,
+                editingNote:true
+            })
+        }else{
+            console.log("Note already being edited");
+        }
+    };
+
+    saveEditBtn = (note,i)=>{
+        console.log("SAVING EDITS");
+        const noteIndex = ((this.props.notes.length-1) - i);
+        this.props.handleUpdateNote(this.state.editedNote,noteIndex);
+        this.setState({
+            editedNoteIndex:null,
+            editedNote:"",
+            editingNote:false
+        });
+    };
+
+    cancleEditBtn = (note,i)=>{
+        this.setState({
+            editedNoteIndex:null,
+            editedNote:"",
+            editingNote:false
+        });
+        const noteIndex = ((this.props.notes.length-1) - i);
+        this.props.handleCancleEditNote(noteIndex);
     }
 
-    onClick = e => {
-        e.preventDefault();
-        let newNote = this.state.notes.slice();
-        newNote.push(this.state.currentNote);
 
-        this.setState({ notes: newNote, currentNote: '' });
-    }
-
-    deleteNote = i => {
-        let removeNote = this.state.notes.slice();
-        removeNote.splice(i , 1);
-        this.setState({ notes: removeNote })
+    makeCard = (note,i)=>{
+        if (note.beingEdited){
+            return(
+                <Card className='noteCard'>
+                <div className="noteContent row">
+                    <div className="noteText col s10">
+                    <Input
+                        className="noteInput"
+                        type="textarea"
+                        maxlength="200"
+                        value={this.state.editedNote}
+                        onChange={this.onEditNoteInputChange}>
+                    </Input>
+                    </div>
+                    <div className="noteButons col s2">
+                        <Button className="btn-floating waves-effect waves-light" 
+                            onClick={() => this.saveEditBtn(note,i)}>
+                            <Icon>save</Icon>
+                        </Button>
+                        <Button className="btn-floating waves-effect waves-light" 
+                            onClick={() => this.cancleEditBtn(note,i)}>
+                            <Icon>clear</Icon>
+                        </Button>
+                    </div>
+                </div>
+            </Card>
+            );
+        }
+        return (
+            <Card className='noteCard'>
+                <div className="noteContent row">
+                    <div className="noteText col s10">
+                        {note.text}
+                    </div>
+                    <div className="noteButons col s2">
+                        <Button className="btn-floating waves-effect waves-light" 
+                            onClick={() => this.props.handleDeleteNote(((this.props.notes.length-1) - i))}>
+                            <Icon>delete</Icon>
+                        </Button>
+                        <Button className="btn-floating waves-effect waves-light" 
+                            onClick={() => this.editNoteBtn(note,i)}>
+                            <Icon>edit</Icon>
+                        </Button>
+                    </div>
+                </div>
+            </Card>
+        );
     }
 
     render() {
-        let displayNotes = this.state.notes.map((text, i) => {
+        let displayNotes = this.props.notes.slice(0).reverse().map((noteObj, i) => {
             return (
-                <CollectionItem key={"Note-"+i}>
-                    <Card className='noteCard'>
-                        <div className="noteContent row">
-                            <div className="noteText col s10">
-                                <p>{text}</p>
-                            </div>
-                            <div className="noteButons col s2">
-                                <Button className="btn-floating waves-effect waves-light" onClick={() => this.deleteNote(i)}><Icon>delete</Icon></Button>
-                            </div>
-                        </div>
-                    </Card>
-                </CollectionItem>
+            <CollectionItem key={"Note-"+i}>
+                {this.makeCard(noteObj,i)}
+            </CollectionItem>
             );
         });
 
@@ -57,11 +131,11 @@ export default class Notes extends Component {
                         maxlength="200"
                         placeholder='Create a new note!'
                         value={this.state.currentNote}
-                        onChange={this.onInputChange}
+                        onChange={this.onNewNoteInputChange}
                     />
                 </div>
                 <div className=" addNoteBtnDiv col s2">
-                    <Button className="addNoteBtn btn-floating waves-effect waves-light" onClick={this.onClick}><Icon>add</Icon></Button>
+                    <Button className="addNoteBtn btn-floating waves-effect waves-light" onClick={()=>{this.addNoteBtn()}}><Icon>add</Icon></Button>
                 </div>
             </div>;
 
@@ -69,6 +143,8 @@ export default class Notes extends Component {
             <Collection className='Notes' header = {newNoteHeader}>
                 {displayNotes}
             </Collection>
-        )
+        );
     }
-}
+};
+
+export default Notes;

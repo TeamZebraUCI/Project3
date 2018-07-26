@@ -13,17 +13,24 @@ class Login extends Component{
             <Page
                 style={
                     {
-                    "background-color":"#9b179b",//<------ THEME COLOR
+                    "backgroundColor":"#330066",//<------ THEME COLOR
                     }
                 }
-                text="P3"//<---- LOGO TEXT
+                text={<img class="stockLogo" src="Stock_Run_Logo.jpg"></img>}//<---- LOGO
+                promptLogin={true}
                 promptLogin = {false}
             >
                 <Helmet>
                     <title>Login</title>
                 </Helmet>
                 <div id="container">
-                    <LoginComp />
+                    <LoginComp
+                      loggedIn={this.props.loggedIn} 
+                      username={this.props.username} 
+                      signUp={this.props.signUp}
+                      logIn={this.props.logIn}
+                      logOut={this.props.logOut}
+                      />
                 </div>
             </Page>
         );

@@ -1,39 +1,26 @@
 import React, {Component} from "react";
 import {Collection, CollectionItem, Button, Icon,Chip} from "react-materialize";
 import './TickerList.css';
-import StockAPI from "../../utils/API";
+import Input from "../../../node_modules/react-materialize/lib/Input";
 
 class TickerList extends Component {
     state={
         query:"",
-        Tickers:[]
     };
 
     onInputChange = (event) => {
         this.setState({ query: event.target.value });
     };
 
-    searchTicker = event => {
-        if (this.state.query){
-            StockAPI.searchSymbol(this.state.query.trim()).then(res=>{
-                console.log("API::SearchSymbol::SUCCESS");
-                //add ticker to list
-                let newTickers = this.state.Tickers;
-                const newTIcker = {
-                    ticker: this.state.query,
-                    logoURL: res.data.url
-                }
-                newTickers.push(newTIcker);
-                this.setState({ Tickers: newTickers, query: "" });
-            }).catch(error=>{
-                console.log("API::SearchSymbol::FAIL");
-            });
-        }
+    searchBtn = ()=>{
+        this.props.handleSearchTicker(this.state.query);
+        this.setState({query:""});
     };
 
     render(){
 
-        let displayTickers = this.state.Tickers.map((tickerObj)=>{
+        // let displayTickers = this.state.Tickers.map((tickerObj)=>{
+        let displayTickers = this.props.tickerList.map((tickerObj)=>{
             return (
                 <CollectionItem key={tickerObj.ticker} href="#" onClick={()=>{this.props.selectHandler(tickerObj)}}>
                     <Chip>
@@ -47,14 +34,14 @@ class TickerList extends Component {
         const searchHeader =
             <div>
                 <h5>Companies</h5>
-                <input
+                <Input
                     className='textArea'
                     placeholder='Ticker'
-                    value={this.state.text}
+                    value={this.state.query}
                     onChange={this.onInputChange}
                     type="text" 
                 />
-                <Button onClick={this.searchTicker}><Icon left>search</Icon>Search</Button>
+                <Button onClick={this.searchBtn}><Icon left>search</Icon>Search</Button>
             </div>;
 
 

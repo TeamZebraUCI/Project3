@@ -4,12 +4,9 @@ import React, {Component} from 'react';
 import { 
   BrowserRouter as Router,
   Route,
-  Link,
-  Redirect,
-  withRouter, 
   Switch 
 } from "react-router-dom";
-
+import axios from "axios";
 //======================================import pages============================================================
 //import pages
 import HomePage from "./pages/Home";
@@ -17,110 +14,175 @@ import LoginPage from "./pages/Login";
 import NoMatchPage from "./pages/NoMatch";
 
 //======================================import API================================================================
-// import API from "./utils/API";
+import StockAPI from "./utils/API";
 
 //======================================Logic for Secured Login Page=============================================
+class App extends Component{
+  constructor(props) {
+    super(props)
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
+    const sessionState = sessionStorage.getItem("state");
+
+    if(sessionState){
+      this.state = JSON.parse(sessionStorage.getItem("state"));
+    }else{
+      this.state = {
+        loggedIn:false,
+        username:'',
+        tickerList:[],
+        notes:[]
+      }
+    }
   }
-}
+ 
+  signUp = (e, username, password) => {
+    e.preventDefault();
+    const user = {
+      "username": username,
+      "password": password
+    };
 
-const Public = () => <h3>Public</h3>
-const Protected = () => <h3>Protected</h3>
-
-class Login extends React.Component {
-  state = {
-    redirectToReferrer: false
+    console.log(user);
+    axios.post("/api/user", user).then(res => {
+      console.log(res);
+      alert(res.data.message);
+      this.setState({
+        loggedIn:res.data.loggedIn,
+        username:res.data.username
+      });
+    });
+    sessionStorage.setItem("state",JSON.stringify(this.state));
   }
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState(() => ({
-        redirectToReferrer: true
-      }))
+ 
+  logIn = (e, username, password) => {
+    e.preventDefault();
+    const user = {
+      "username": username,
+      "password": password
+    };
+    axios.post("/api/user/login", user).then(res => {
+      console.log(res.data);
+      alert(res.data.message);
+      this.setState({
+        loggedIn:res.data.loggedIn,
+        username:res.data.username,
+      });
+      
+      sessionStorage.setItem("state",JSON.stringify(this.state));
     })
   }
-  render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { redirectToReferrer } = this.state
 
-    if (redirectToReferrer === true) {
-      return <Redirect to={from} />
-    }
+  logOut = (e) => {
+    e.preventDefault();
+    console.log(this.state);
 
-    return (
-      <div>
-        <p>You must log in to view the page</p>
-        <button onClick={this.login}>Log in</button>
-      </div>
-    )
+    this.setState({
+      loggedIn: false,
+      username:"",
+      tickerList:[],
+      notes:[]
+    });
+    console.log("saving the state below");
+    console.log(this.state);
+
+    sessionStorage.setItem("state",JSON.stringify(this.state));
   }
-}
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
-        }} />
-  )} />
-)
+  searchTicker = (query) => {
+      if (query){
+          StockAPI.searchSymbol(query.trim()).then(res=>{
+              console.log("API::SearchSymbol::SUCCESS");
+              //add ticker to list
+              let newTickers = this.state.tickerList;
+              const newTIcker = {
+                  ticker: query,
+                  logoURL: res.data.url
+              }
+              newTickers.push(newTIcker);
+              this.setState({ Tickers: newTickers});
+              sessionStorage.setItem("state",JSON.stringify(this.state));
+          }).catch(error=>{
+              console.log("API::SearchSymbol::FAIL");
+          });
+      }
+  };
 
-const AuthButton = withRouter(({ history }) => (
-  fakeAuth.isAuthenticated ? (
-    <p>
-      Welcome! <button onClick={() => {
-        fakeAuth.signout(() => history.push('/'))
-      }}>Sign out</button>
-    </p>
-  ) : (
-    <p>You are not logged in.</p>
-  )
-))
+  addNote = (noteText)=>{
+    let newNotes = this.state.notes;
+    newNotes.push({
+      text:noteText,
+      beingEdited:false
+    });
+    this.setState({notes:newNotes});
+    sessionStorage.setItem("state",JSON.stringify(this.state));
+  }
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <Router>
-//         <div>
-//           <AuthButton/>
-//           <ul>
-//             <li><Link to = '/public'>Public Page</Link></li>
-//             <li><Link to = '/protected'>Protected Page</Link></li>
-//           </ul>
+  deleteNote = (noteIndex)=>{
+    let newNotes = this.state.notes;
+    newNotes.splice(noteIndex,1);
+    this.setState({notes:newNotes});
+    sessionStorage.setItem("state",JSON.stringify(this.state));
+  }
 
-//           <Route path = '/public' component = {Public} />
-//           <Route path = '/login' component = {Login} />
-//           <PrivateRoute path = '/protected' component = {Protected} />
-//         </div> 
-//       </Router>
-//     );
-//   }
-// }
+  updateNote = (noteText,noteIndex)=>{
+    let newNotes = this.state.notes;
+    newNotes[noteIndex].text = noteText;
+    newNotes[noteIndex].beingEdited = false;
+    this.setState({notes:newNotes});
+    sessionStorage.setItem("state",JSON.stringify(this.state));
+  }
 
-// =================================Daniel Logic==================================================
-class App extends Component{
+  editNote = (noteIndex)=>{
+    let newNotes = this.state.notes;
+    newNotes[noteIndex].beingEdited = true;
+    this.setState({notes:newNotes});    
+  }
+
+  cancleEditNote = (noteIndex)=>{
+    let newNotes = this.state.notes;
+    newNotes[noteIndex].beingEdited = false;
+    this.setState({notes:newNotes});
+  }
+
+  
   render(){
     return (
       <Router>
-        <Switch>
-          <Route exact path="/" render={()=><HomePage username=""/>} />
-          <Route exact path="/login" render={()=><LoginPage/>} />
-          <Route render={()=><NoMatchPage />} />
-        </Switch>
+          <Switch>
+            <Route 
+              exact 
+              path="/" 
+              render={()=>
+                <HomePage 
+                  username={this.state.username}
+
+                  tickerList = {this.state.tickerList}
+                  handleSearchTicker = {this.searchTicker}
+
+                  notes = {this.state.notes}
+                  handleAddNote = {this.addNote}
+                  handleDeleteNote = {this.deleteNote}
+                  handleEditNote = {this.editNote}
+                  handleUpdateNote = {this.updateNote}
+                  handleCancleEditNote = {this.cancleEditNote}
+                />} />
+            <Route
+              exact
+              path="/login"
+              render={()=>
+                <LoginPage
+                  loggedIn={this.state.loggedIn}
+                  username={this.state.username}
+                  signUp={this.signUp}
+                  logIn={this.logIn}
+                  logOut={this.logOut}
+                />} />
+            <Route render={()=><NoMatchPage />} />
+          </Switch>
       </Router>
     );
   }
-}
-
-
-export default App;
+ }
+ 
+ 
+ export default App;
