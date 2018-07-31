@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import "./Home.css";
-import { Helmet } from "react-helmet";
-import Page from "../../components/MaterializePage";
 import TickerList from "../../components/TickerList";
 import Notes from "../../components/Notes";
 import SaveButton from "../../components/SaveButton";
@@ -276,56 +274,41 @@ class Home extends Component {
 
     render() {
         return (
-            <Page
-                style={
-                    {
-                        "backgroundColor": "#330066",//<------ THEME COLOR
-                    }
-                }
-                text={<img class="stockLogo" src="Stock_Run_Logo.jpg"></img>}//<---- LOGO
-                promptLogin={true}
-                username={this.props.username}//creating variable inside of home.js called username which is equal to the username thats on app.js
-            >
-                <Helmet>
-                    <title>Home</title>
-                </Helmet>
-                <div className="Home row">
-                    <div className="col s3 mycol1">
-                        <TickerList
-                            tickerList = {this.props.tickerList}
-                            handleSelectTicker={this.props.handleSelectTicker}
-                            handleSearchTicker = {this.props.handleSearchTicker}
-                            />
-                        {this.showSaveButton()}
+            <div className="Home row">
+                <div className="col s3 mycol1">
+                    <TickerList
+                        tickerList = {this.props.tickerList}
+                        handleSelectTicker={this.props.handleSelectTicker}
+                        handleSearchTicker = {this.props.handleSearchTicker}
+                        />
+                    {this.showSaveButton()}
+                </div>
+                <div className="col s9 mycol2">
+                    <div className="row ChartDiv">
+                        <Line data={data} />
+                        <button className="chartBtn" id="empty" onClick={this.removeBtn}>
+                            Remove Dataset
+                        </button>
+                        <button className="chartBtn" id="apple" onClick={this.appleBtn}>
+                            Apple
+                        </button>
+                        <TickerChips 
+                            selectedTickers = {this.props.selectedTickers}
+                            handleRemoveChip = {this.props.handleRemoveChip}
+                        />
                     </div>
-                    <div className="col s9 mycol2">
-                        <div className="row ChartDiv">
-                            <Line data={data} />
-                            <button className="chartBtn" id="empty" onClick={this.removeBtn}>
-                                Remove Dataset
-                            </button>
-                            <button className="chartBtn" id="apple" onClick={this.appleBtn}>
-                                Apple
-                            </button>
-                            <TickerChips 
-                                selectedTickers = {this.props.selectedTickers}
-                                handleRemoveChip = {this.props.handleRemoveChip}
-                            />
-                        </div>
-                        <div className="row NotesDiv">
-                            <Notes
-                                notes = {this.props.notes}
-                                handleAddNote={this.props.handleAddNote}
-                                handleDeleteNote = {this.props.handleDeleteNote}
-                                handleEditNote = {this.props.handleEditNote}
-                                handleUpdateNote = {this.props.handleUpdateNote}
-                                handleCancleEditNote = {this.props.handleCancleEditNote}
-                            />
-                        </div>
+                    <div className="row NotesDiv">
+                        <Notes
+                            notes = {this.props.notes}
+                            handleAddNote={this.props.handleAddNote}
+                            handleDeleteNote = {this.props.handleDeleteNote}
+                            handleEditNote = {this.props.handleEditNote}
+                            handleUpdateNote = {this.props.handleUpdateNote}
+                            handleCancleEditNote = {this.props.handleCancleEditNote}
+                        />
                     </div>
                 </div>
-                
-            </Page>
+            </div>
         );
     }
 };
