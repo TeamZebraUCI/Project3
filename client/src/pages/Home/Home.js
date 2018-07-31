@@ -3,7 +3,6 @@ import "./Home.css";
 import TickerList from "../../components/TickerList";
 import Notes from "../../components/Notes";
 import SaveButton from "../../components/SaveButton";
-import TickeChips from "../../components/TickerChips";
 
 import { Line } from "react-chartjs-2"
 import TickerChips from "../../components/TickerChips";

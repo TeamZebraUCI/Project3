@@ -55,7 +55,7 @@ class App extends Component{
 
         <Header
           style = {pageStyle}
-          text = {<img class="stockLogo" src="Stock_Run_Logo.jpg"></img>}
+          text = {<img class="stockLogo" alt="Our Logo" src="Stock_Run_Logo.jpg"></img>}
           navItem = {false}
           promptLogin = {true}
           username = {this.state.username}
@@ -223,7 +223,7 @@ class App extends Component{
 
   selectTicker = (tickerObj)=>{
     for (let i=0; i<this.state.selectedTickers.length; i++){
-      if (tickerObj.ticker == this.state.selectedTickers[i].ticker){
+      if (tickerObj.ticker === this.state.selectedTickers[i].ticker){
         return;
       }
     }

@@ -21,7 +21,7 @@ class TickerList extends Component {
             return (
                 <CollectionItem className="row" key={tickerObj.ticker} onClick={()=>{this.props.handleSelectTicker(tickerObj)}}>
                     <div className="tickerLogoDiv">
-                        <img className="tickerLogo" src={tickerObj.logoURL}/>
+                        <img className="tickerLogo"  alt={tickerObj.ticker} src={tickerObj.logoURL}/>
                     </div>
                     <div className="tickerNameDiv">
                         {tickerObj.ticker}
