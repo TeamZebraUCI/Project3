@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Collection, CollectionItem, Button, Icon, Card, Input,Dropdown,NavItem} from "react-materialize";
+import {Collection, CollectionItem, Button, Icon, Card, Input} from "react-materialize";
 import './Notes.css';
 
 class Notes extends Component {
