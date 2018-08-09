@@ -72,7 +72,7 @@ class Notes extends Component {
                     <Input
                         className="noteInput"
                         type="textarea"
-                        maxlength="200"
+                        maxLength="200"
                         value={this.state.editedNote}
                         onChange={this.onEditNoteInputChange}>
                     </Input>
@@ -128,7 +128,7 @@ class Notes extends Component {
                     <Input
                         className="noteInput"
                         type="textarea"
-                        maxlength="200"
+                        maxLength="200"
                         placeholder='Create a new note!'
                         value={this.state.currentNote}
                         onChange={this.onNewNoteInputChange}

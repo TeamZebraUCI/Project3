@@ -55,7 +55,7 @@ class App extends Component{
 
         <Header
           style = {pageStyle}
-          text = {<img class="stockLogo" alt="Our Logo" src="Stock_Run_Logo.jpg"></img>}
+          text = {<img className="stockLogo" alt="Our Logo" src="Stock_Run_Logo.jpg"></img>}
           navItem = {false}
           promptLogin = {true}
           username = {this.state.username}

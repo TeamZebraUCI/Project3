@@ -6,7 +6,7 @@ class TickerChips extends Component{
 
     makeChip(tickerObj,index){
         return (
-            <Chip onClick={()=>{this.props.handleRemoveChip(index)}}>
+            <Chip key={tickerObj.ticker + "-Chip"} onClick={()=>{this.props.handleRemoveChip(index)}}>
                 <img src={tickerObj.logoURL} alt={tickerObj.ticker} />
                 {tickerObj.ticker}
             </Chip>
