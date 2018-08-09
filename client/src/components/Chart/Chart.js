@@ -61,12 +61,16 @@ class Chart extends Component {
           for (let tickerKey_i=0; tickerKey_i<tickerKeyList.length; tickerKey_i++){
             const tickerKey = tickerKeyList[tickerKey_i];
             const tickerDataPoint = res.data[tickerKey].chart[dataPoint_i];
-            newDataPoint[tickerKey.toLowerCase()] = tickerDataPoint.average;
+            if (tickerDataPoint.average !== -1){
+              newDataPoint[tickerKey.toLowerCase()] = tickerDataPoint.average;
+            }else{
+              newDataPoint[tickerKey.toLowerCase()] = null;
+            }
           }
           newData.push(newDataPoint);
         }
-
-        console.log(newData)
+        console.log(newData);
+        this.setState({data:newData});
       });
     }
   };
@@ -74,12 +78,9 @@ class Chart extends Component {
 
   render(){
 
-    const keys = ["uv","pv","amt"];
-    let counter = 0;
-
     const displayLines = this.props.selectedTickers.map(tickerObj=>{
       return (
-        <Line key={tickerObj.ticker+'-Line'} type="monotone" dataKey={keys[counter++]} stroke="#8884d8" />
+        <Line key={tickerObj.ticker+'-Line'} type="monotone" dataKey={tickerObj.ticker} stroke="#8884d8" />
       );
     });
 
@@ -87,7 +88,7 @@ class Chart extends Component {
       <div className="Chart">
         <ResponsiveContainer width="100%" height={600}>
           <LineChart data={this.state.data} domain={['dataMin', 'auto']}>
-            <XAxis dataKey="name"/>
+            <XAxis dataKey="label"/>
             <YAxis/>
             <CartesianGrid strokeDasharray="3 3"/>
             <Tooltip/>
