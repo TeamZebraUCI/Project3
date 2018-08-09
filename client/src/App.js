@@ -41,7 +41,6 @@ class App extends Component{
   }
 
   render(){
-
     const pageStyle = {
       "backgroundColor": "#330066",//<------ THEME COLOR
     }

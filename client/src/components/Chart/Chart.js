@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import "./Chart.css";
 import TickerChips from "../../components/TickerChips";
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from "recharts";
+import {Button} from "react-materialize";
+import stockAPI from "../../utils/API";
 
 
 class Chart extends Component {
@@ -19,6 +21,16 @@ class Chart extends Component {
     ]
   };
 
+  updateData(){
+
+    if (this.props.selectedTickers.length){
+      stockAPI.getData(this.props.selectedTickers.map(tickerObj=>tickerObj.ticker)).then(res=>{
+        console.log(res);
+      });
+    }
+  };
+
+
   render(){
 
     const keys = ["uv","pv","amt"];
@@ -26,7 +38,7 @@ class Chart extends Component {
 
     const displayLines = this.props.selectedTickers.map(tickerObj=>{
       return (
-        <Line key={'Line-'+counter} type="monotone" dataKey={keys[counter++]} stroke="#8884d8" />
+        <Line key={tickerObj.ticker+'-Line'} type="monotone" dataKey={keys[counter++]} stroke="#8884d8" />
       );
     });
 
@@ -45,6 +57,7 @@ class Chart extends Component {
             selectedTickers = {this.props.selectedTickers}
             handleRemoveChip = {this.props.handleRemoveChip}
           />
+        <Button onClick={()=>{this.updateData()}} >Update Chart</Button>
       </div>
     );
   };
